@@ -148,7 +148,7 @@ test('manifest and all local install icons exist with correct PNG dimensions', a
     assert.equal(png.readUInt32BE(16), size)
     assert.equal(png.readUInt32BE(20), size)
   }
-  await access('public/icons/calendar-image-180.png')
+  await access('public/icons/calendar-custom-180.png')
   const html = await readFile('index.html', 'utf8')
   assert.match(html, /rel="manifest"/)
   assert.match(html, /rel="apple-touch-icon"/)

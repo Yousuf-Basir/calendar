@@ -25,7 +25,7 @@ export default function InstallDrawer({ state }) {
       <aside className="install-offer" aria-label="Get the Calendar app">
         <p>Keep your calendar one tap away.</p>
         <button className="install-pill" type="button" onClick={() => installController.open()}>
-          <img src="/icons/calendar-image-32.png" alt="" width="22" height="22" />
+          <img src="/icons/calendar-custom-32.png" alt="" width="22" height="22" />
           Get Calendar <span aria-hidden="true">↗</span>
         </button>
       </aside>
@@ -38,7 +38,7 @@ export default function InstallDrawer({ state }) {
         }}>
         <div className="drawer-handle" aria-hidden="true" />
         <div className="install-app">
-          <img className="install-app-icon" src="/icons/calendar-image-192.png" alt="Calendar app icon" width="76" height="76" />
+          <img className="install-app-icon" src="/icons/calendar-custom-192.png" alt="Calendar app icon" width="76" height="76" />
           <div><p className="install-eyebrow">YOUR EVERYDAY COMPANION</p><h2 id="install-title">Calendar</h2><p>Make room for your days.</p></div>
         </div>
         <div className="install-features" aria-label="App features">
