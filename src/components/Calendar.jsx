@@ -34,14 +34,14 @@ function MonthGrid({ month, language, today, active }) {
         </thead>
         <tbody>{Array.from({ length: 6 }, (_, row) => (
           <tr key={row}>{cells.slice(row * 7, row * 7 + 7).map((day, column) => {
+            if (day === null) return <td key={column} className="calendar-blank" />
             const holiday = holidayForDate(dayToIso(day))
-            const adjacent = day < month.start || day >= month.end
             const parts = calendarParts(day, language)
             return (
               <td key={column}>
                 <time
                   dateTime={dayToIso(day)}
-                  className={`calendar-day${column === 5 ? ' is-friday' : ''}${day === today ? ' is-today' : ''}${adjacent ? ' is-adjacent' : ''}`}
+                  className={`calendar-day${column === 5 ? ' is-friday' : ''}${day === today ? ' is-today' : ''}`}
                   data-date={dayToIso(day)}
                   aria-label={dateLabel(day, language)}
                   aria-current={day === today ? 'date' : undefined}

@@ -108,16 +108,22 @@ test('switching calendars retains English-month holidays beyond native month bou
 })
 
 
-test('Sunday-first grids retain neighbouring holiday dates in Bengali and Hijri views', () => {
+test('Sunday-first grids show exactly the current month in all three calendars', () => {
   for (const system of ['en', 'bn', 'ar']) {
     assert.equal(LABELS[system].weekdayNames[5], system === 'bn' ? 'শুক্রবার' : 'Friday')
-    const month = calendarMonth(isoToDay('2026-10-08'), system)
-    const cells = monthCells(month)
-    assert.equal(weekdayIndex(cells[0]), 0)
-    for (let i = 1; i < cells.length; i++) assert.equal(cells[i], cells[i - 1] + 1)
-    for (const date of ['2026-10-20', '2026-10-21', '2026-10-22']) {
-      assert.ok(cells.includes(isoToDay(date)), `${system} must show the actual holiday ${date}`)
-      assert.ok(holidayForDate(date))
+    for (let gregorianMonth = 1; gregorianMonth <= 12; gregorianMonth++) {
+      const month = calendarMonth(isoToDay(`2026-${String(gregorianMonth).padStart(2, '0')}-08`), system)
+      const cells = monthCells(month)
+      const dates = cells.filter((day) => day !== null)
+      assert.equal(cells.length, 42)
+      assert.equal(dates.length, month.length)
+      assert.equal(dates[0], month.start)
+      assert.equal(dates.at(-1), month.end - 1)
+      assert.equal(cells.indexOf(month.start), weekdayIndex(month.start))
+      dates.forEach((day, index) => {
+        assert.equal(day, month.start + index)
+        assert.equal(calendarParts(day, system).month, month.month)
+      })
     }
   }
 })

@@ -108,7 +108,8 @@ export function canShiftMonth(day, system, direction) {
 }
 export function monthCells(month) {
   const offset = weekdayIndex(month.start)
-  // Adjacent dates keep holiday markers on their true civil dates when the
-  // Gregorian holiday list extends beyond this Bengali or Hijri month.
-  return Array.from({ length: 42 }, (_, index) => month.start - offset + index)
+  return Array.from({ length: 42 }, (_, index) => {
+    const day = month.start - offset + index
+    return day >= month.start && day < month.end ? day : null
+  })
 }
