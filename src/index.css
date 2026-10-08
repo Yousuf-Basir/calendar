@@ -213,7 +213,7 @@ button:disabled {
 .calendar-carousel::-webkit-scrollbar { display: none; }
 .month-page { flex: 0 0 100%; width: 100%; min-width: 0; scroll-snap-align: center; scroll-snap-stop: always; }
 .month-grid { width: 100%; table-layout: fixed; border-collapse: separate; border-spacing: 3px 6px; }
-.month-grid th { height: 52px; padding: 0 1px; color: var(--color-muted); font-size: clamp(0.6875rem, 3vw, 0.8125rem); font-weight: 500; line-height: 1.4; overflow-wrap: anywhere; vertical-align: top; }
+.month-grid th { height: 38px; padding: 0 1px; color: var(--color-muted); font-size: clamp(0.6875rem, 3vw, 0.8125rem); font-weight: 500; line-height: 1.4; overflow-wrap: anywhere; vertical-align: top; }
 .home[data-language="bn"] .calendar-month-heading { letter-spacing: 0; line-height: 1.4; }
 .month-grid abbr { text-decoration: none; }
 .month-grid td { height: var(--calendar-cell-size, 2rem); padding: 0; }
@@ -281,3 +281,8 @@ button:disabled {
 @keyframes drawer-in { from { transform: translateY(100%); } to { transform: translateY(0); } }
 @media (prefers-reduced-motion: reduce) { .install-drawer[open] { animation: none; } }
 @media (max-width: 340px) { .install-drawer { padding-inline: 16px; } .install-app { gap: 12px; } }
+
+.calendar-english-range { display: block; margin-top: 8px; color: var(--color-muted); font-size: 0.75rem; font-weight: 400; line-height: 1.4; letter-spacing: 0; }
+.calendar-day.is-adjacent { background: transparent; border-color: var(--color-border); }
+.calendar-day.is-adjacent > span:first-child { opacity: 0.5; }
+.calendar-day.is-adjacent.is-today { background: var(--color-accent); border-color: transparent; }

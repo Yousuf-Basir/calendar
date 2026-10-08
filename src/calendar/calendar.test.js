@@ -1,3 +1,4 @@
+import { formatGregorianRange, LABELS } from './labels.js'
 import { holidayPeriod } from './holidays.js'
 import test from 'node:test'
 import assert from 'node:assert/strict'
@@ -77,7 +78,7 @@ test('grid places actual Fridays in the red column in every calendar', () => {
     cells.forEach((day, index) => {
       if (day !== null) assert.equal(weekdayIndex(day), index % 7)
     })
-    assert.ok(cells.filter((day, index) => day !== null && index % 7 === 4).length >= 4)
+    assert.ok(cells.filter((day, index) => day !== null && index % 7 === 5).length >= 4)
   }
 })
 
@@ -104,4 +105,25 @@ test('switching calendars retains English-month holidays beyond native month bou
   assert.deepEqual(calendarParts(isoToDay(holidays[0].date), 'bn'), { year: 1433, month: 6, day: 4 })
   assert.deepEqual(calendarParts(isoToDay(holidays[0].date), 'ar'), { year: 1448, month: 4, day: 9 })
   assert.deepEqual(holidayPeriod(isoToDay('2026-11-08')).holidays.map(({ date }) => date), ['2026-11-07'])
+})
+
+
+test('Sunday-first grids retain neighbouring holiday dates in Bengali and Hijri views', () => {
+  for (const system of ['en', 'bn', 'ar']) {
+    assert.equal(LABELS[system].weekdayNames[5], system === 'bn' ? 'শুক্রবার' : 'Friday')
+    const month = calendarMonth(isoToDay('2026-10-08'), system)
+    const cells = monthCells(month)
+    assert.equal(weekdayIndex(cells[0]), 0)
+    for (let i = 1; i < cells.length; i++) assert.equal(cells[i], cells[i - 1] + 1)
+    for (const date of ['2026-10-20', '2026-10-21', '2026-10-22']) {
+      assert.ok(cells.includes(isoToDay(date)), `${system} must show the actual holiday ${date}`)
+      assert.ok(holidayForDate(date))
+    }
+  }
+})
+
+test('English month ranges use inclusive boundaries and show years across New Year', () => {
+  assert.equal(formatGregorianRange(calendarMonth(isoToDay('2026-10-08'), 'bn')), '16 Sept – 16 Oct')
+  assert.equal(formatGregorianRange(calendarMonth(isoToDay('2026-10-08'), 'ar')), '13 Sept – 11 Oct')
+  assert.equal(formatGregorianRange({ start: isoToDay('2026-12-16'), end: isoToDay('2027-01-16') }), '16 Dec 2026 – 15 Jan 2027')
 })

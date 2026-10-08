@@ -25,7 +25,7 @@ export function isLeapYear(year) {
   return year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0)
 }
 export function weekdayIndex(day) {
-  return (dayToDate(day).getUTCDay() + 6) % 7 // Monday first; Friday is always 4.
+  return dayToDate(day).getUTCDay() // Sunday first; Friday is always 5.
 }
 
 function civilHijriStart(serial) {
@@ -108,8 +108,7 @@ export function canShiftMonth(day, system, direction) {
 }
 export function monthCells(month) {
   const offset = weekdayIndex(month.start)
-  return Array.from({ length: 42 }, (_, index) => {
-    const day = index - offset
-    return day >= 0 && day < month.length ? month.start + day : null
-  })
+  // Adjacent dates keep holiday markers on their true civil dates when the
+  // Gregorian holiday list extends beyond this Bengali or Hijri month.
+  return Array.from({ length: 42 }, (_, index) => month.start - offset + index)
 }

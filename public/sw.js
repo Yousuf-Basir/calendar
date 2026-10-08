@@ -3,12 +3,12 @@
  * Serves cached assets when offline, fetches fresh when online.
  */
 
-const CACHE_NAME = 'calendar-shell-v3'
+const CACHE_NAME = 'calendar-shell-v4'
 // Vite fills this list for production. Dev assets are cached as requested.
 const BUILD_ASSETS = /* build assets */ []
 const STATIC_ASSETS = ['/', '/index.html', '/manifest.webmanifest',
-  '/icons/calendar.svg', '/icons/calendar-32.png', '/icons/calendar-180.png',
-  '/icons/calendar-192.png', '/icons/calendar-512.png', '/icons/calendar-maskable-512.png',
+  '/icons/calendar-image-32.png', '/icons/calendar-image-180.png',
+  '/icons/calendar-image-192.png', '/icons/calendar-image-512.png', '/icons/calendar-image-maskable-512.png',
   ...BUILD_ASSETS]
 
 // Install — cache app shell

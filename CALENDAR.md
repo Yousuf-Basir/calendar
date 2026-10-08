@@ -1,6 +1,6 @@
 # Calendar conventions and offline data
 
-The supported civil date range is 1 January 2020–31 December 2100. Internally, UTC day numbers prevent timezone and daylight-saving changes from moving dates between cells. Today uses `Asia/Dhaka`. All views have Monday-first weeks, with Friday in the fifth column.
+The supported civil date range is 1 January 2020–31 December 2100. Internally, UTC day numbers prevent timezone and daylight-saving changes from moving dates between cells. Today uses `Asia/Dhaka`. All views have Sunday-first weeks, with Friday in the sixth (second-last) column.
 
 English uses Gregorian dates. Bangla uses Bangladesh's 2019 revised civil calendar: New Year on 14 April, six 31-day months, five 30-day months, and Falgun with 29 days (30 when the Gregorian year containing Falgun is a leap year). This differs from the astronomical Bengali calendar used in West Bengal. References: [Government Teachers' Portal calendar rules](https://teachers.gov.bd/index.php/blog/details/788609), [Bangla Academy: 26 February 2020 = 13 Falgun 1426](https://banglaacademy.gov.bd/pages/news/6922d8f3933eb65569dfb759).
 
@@ -19,7 +19,7 @@ Sources appear alongside every entry in `src/data/bangladesh-moon-starts.js`. Ra
 
 Chaitra Sankranti on 13 April is explicitly regional (Rangamati, Khagrachhari and Bandarban). Optional religious leave and school- or bank-only closures are excluded. Multiple holidays on one date share a cell and list item. Ordinary weekly closures are separate from holiday entries; Fridays have a red column.
 
-Holiday records retain their Gregorian civil dates. The list uses the Gregorian month containing the browsed date in every view, and converts each holiday to the selected calendar. Its heading identifies that Gregorian month because Bengali and Hijri month boundaries differ. Grid markers remain attached to the actual civil date. Only 2026 official holidays are loaded. Other years show a missing-coverage message rather than claiming there are no holidays.
+Holiday records retain their Gregorian civil dates. The list uses the Gregorian month containing the browsed date in every view, and converts each holiday to the selected calendar. Its heading identifies that Gregorian month because Bengali and Hijri month boundaries differ. Grid markers remain attached to the actual civil date. Six-week grids include muted adjacent-month dates so nearby holidays remain visible across native month boundaries. Bengali and Hijri headings show their inclusive Gregorian date range. Only 2026 official holidays are loaded. Other years show a missing-coverage message rather than claiming there are no holidays.
 
 Sources are retained in the checked-in data and this document, and hidden in the app. Bundled records and fonts work offline after successful service-worker installation; the app requires no source website connection. No remote API or scraping runs in the browser. New years, later amendments, and moon announcements require updating the checked-in data and rebuilding.
 

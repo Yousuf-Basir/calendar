@@ -5,7 +5,7 @@ import {
   isoToDay,
 } from '../calendar/calendar.js'
 import { holidayPeriod } from '../calendar/holidays.js'
-import { formatNumber, LABELS } from '../calendar/labels.js'
+import { formatGregorianRange, formatNumber, LABELS } from '../calendar/labels.js'
 import {
   holidayForDate, holidayName,
   HOLIDAY_YEARS,
@@ -27,25 +27,26 @@ function MonthGrid({ month, language, today, active }) {
         <caption className="sr-only">{labels.months[month.month]} {formatNumber(month.year, language)}</caption>
         <thead>
           <tr>{labels.weekdays.map((name, index) => (
-            <th key={name} scope="col" className={index === 4 ? 'is-friday' : undefined}>
+            <th key={name} scope="col" className={index === 5 ? 'is-friday' : undefined}>
               <abbr title={labels.weekdayNames[index]}>{name}</abbr>
             </th>
           ))}</tr>
         </thead>
         <tbody>{Array.from({ length: 6 }, (_, row) => (
           <tr key={row}>{cells.slice(row * 7, row * 7 + 7).map((day, column) => {
-            if (day === null) return <td key={column} className="calendar-blank" />
             const holiday = holidayForDate(dayToIso(day))
+            const adjacent = day < month.start || day >= month.end
+            const parts = calendarParts(day, language)
             return (
               <td key={column}>
                 <time
                   dateTime={dayToIso(day)}
-                  className={`calendar-day${column === 4 ? ' is-friday' : ''}${day === today ? ' is-today' : ''}`}
+                  className={`calendar-day${column === 5 ? ' is-friday' : ''}${day === today ? ' is-today' : ''}${adjacent ? ' is-adjacent' : ''}`}
                   data-date={dayToIso(day)}
                   aria-label={dateLabel(day, language)}
                   aria-current={day === today ? 'date' : undefined}
                 >
-                  <span>{formatNumber(day - month.start + 1, language)}</span>
+                  <span>{formatNumber(parts.day, language)}</span>
                   {holiday && <span className={`holiday-marker${holiday.scope === 'regional' ? ' holiday-marker--regional' : ''}`} aria-hidden="true" />}
                 </time>
               </td>
@@ -121,6 +122,7 @@ export default function Calendar({ language, viewedDate, today, onChangeMonth })
       <div className="calendar-toolbar">
         <h2 className="calendar-month-heading" aria-live="polite" aria-atomic="true">
           {labels.months[month.month]} <span>{formatNumber(month.year, language)}</span>
+          {language !== 'en' && <small className="calendar-english-range" lang="en">{formatGregorianRange(month)}</small>}
         </h2>
         <div className="calendar-navigation">
           <button type="button" className="calendar-today" onClick={() => onChangeMonth(today)}>{labels.today}</button>

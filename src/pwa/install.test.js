@@ -1,3 +1,4 @@
+import { runInNewContext } from 'node:vm'
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import { readFile, access } from 'node:fs/promises'
@@ -147,8 +148,16 @@ test('manifest and all local install icons exist with correct PNG dimensions', a
     assert.equal(png.readUInt32BE(16), size)
     assert.equal(png.readUInt32BE(20), size)
   }
-  await access('public/icons/calendar-180.png')
+  await access('public/icons/calendar-image-180.png')
   const html = await readFile('index.html', 'utf8')
   assert.match(html, /rel="manifest"/)
   assert.match(html, /rel="apple-touch-icon"/)
+})
+
+
+test('service worker precache URLs are unique and all local static files exist', async () => {
+  const worker = await readFile('public/sw.js', 'utf8')
+  const urls = runInNewContext(`${worker}\nSTATIC_ASSETS`, { self: { addEventListener() {} } })
+  assert.equal(new Set(urls).size, urls.length, 'duplicate requests make cache.addAll fail')
+  for (const url of urls) await access(url === '/' || url === '/index.html' ? 'index.html' : `public${url}`)
 })
