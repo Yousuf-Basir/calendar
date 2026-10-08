@@ -1,0 +1,44 @@
+{
+  "id": "/",
+  "name": "Calendar",
+  "short_name": "Calendar",
+  "description": "English, Bangla and Hijri calendars with Bangladesh holidays. Available offline.",
+  "lang": "en",
+  "start_url": "/?source=installed",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#dedbd5",
+  "theme_color": "#dedbd5",
+  "categories": [
+    "utilities",
+    "productivity"
+  ],
+  "prefer_related_applications": false,
+  "related_applications": [
+    {
+      "platform": "webapp",
+      "url": "/manifest.webmanifest",
+      "id": "/"
+    }
+  ],
+  "icons": [
+    {
+      "src": "/icons/calendar-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/calendar-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/calendar-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

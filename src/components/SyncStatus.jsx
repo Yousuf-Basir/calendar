@@ -1,0 +1,24 @@
+import { useSyncQueue } from '../hooks/useSyncQueue.js'
+
+export default function SyncStatus() {
+  const { isOnline, pendingCount, syncing, sync, lastSynced } = useSyncQueue()
+  if (isOnline && pendingCount === 0 && !lastSynced) return null
+
+  return (
+    <div className="sync-status">
+      <div className="sync-summary" role="status" aria-live="polite">
+        {!isOnline && <span className="status-dot status-dot--offline" aria-hidden="true" />}
+        {!isOnline && <span>Offline</span>}
+        {pendingCount > 0 && (
+          <span className="sync-detail">{pendingCount} unsynced{syncing ? ' · Syncing…' : ''}</span>
+        )}
+        {lastSynced && pendingCount === 0 && (
+          <span className="sync-detail">Last synced {new Date(lastSynced).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+        )}
+      </div>
+      {isOnline && pendingCount > 0 && !syncing && (
+        <button className="button button--quiet" onClick={sync}>Sync now</button>
+      )}
+    </div>
+  )
+}

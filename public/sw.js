@@ -3,8 +3,13 @@
  * Serves cached assets when offline, fetches fresh when online.
  */
 
-const CACHE_NAME = 'offline-first-v1'
-const STATIC_ASSETS = ['/', '/index.html']
+const CACHE_NAME = 'calendar-shell-v3'
+// Vite fills this list for production. Dev assets are cached as requested.
+const BUILD_ASSETS = /* build assets */ []
+const STATIC_ASSETS = ['/', '/index.html', '/manifest.webmanifest',
+  '/icons/calendar.svg', '/icons/calendar-32.png', '/icons/calendar-180.png',
+  '/icons/calendar-192.png', '/icons/calendar-512.png', '/icons/calendar-maskable-512.png',
+  ...BUILD_ASSETS]
 
 // Install — cache app shell
 self.addEventListener('install', (event) => {
@@ -18,7 +23,7 @@ self.addEventListener('install', (event) => {
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((keys) =>
-      Promise.all(keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k)))
+      Promise.all(keys.filter((k) => k.startsWith('calendar-shell-') && k !== CACHE_NAME).map((k) => caches.delete(k)))
     )
   )
   self.clients.claim()
@@ -27,16 +32,24 @@ self.addEventListener('activate', (event) => {
 // Fetch — network first, fallback to cache
 self.addEventListener('fetch', (event) => {
   // Don't intercept API calls
-  if (event.request.url.includes('/api/')) return
+  const url = new URL(event.request.url)
+  if (event.request.method !== 'GET' || url.origin !== self.location.origin || url.pathname.startsWith('/api/')) return
 
   event.respondWith(
     fetch(event.request)
       .then((response) => {
         // Cache fresh responses
-        const clone = response.clone()
-        caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone))
+        if (response.ok && (event.request.mode === 'navigate' || !response.headers.get('content-type')?.includes('text/html'))) {
+          const clone = response.clone()
+          event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone)))
+        }
         return response
       })
-      .catch(() => caches.match(event.request))
+      .catch(async () => {
+        const cached = await caches.match(event.request)
+        if (cached) return cached
+        if (event.request.mode === 'navigate') return caches.match('/index.html')
+        return Response.error()
+      })
   )
 })

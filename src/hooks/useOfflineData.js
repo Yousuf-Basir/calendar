@@ -6,7 +6,7 @@ import { getSyncEngine } from '../sync/syncEngine.js'
  * useOfflineData — full CRUD for a collection backed by IndexedDB.
  * Changes are saved locally instantly and queued for cloud sync.
  *
- * @param {string} collection - Name of the data collection (e.g. 'todos')
+ * @param {string} collection - Name of the data collection
  *
  * @returns {object}
  *   records  — array of all records in the collection
