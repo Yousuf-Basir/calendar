@@ -1,8 +1,8 @@
 {
   "id": "/",
-  "name": "Calendar",
-  "short_name": "Calendar",
-  "description": "English, Bangla and Hijri calendars with Bangladesh holidays. Available offline.",
+  "name": "Offline PWA",
+  "short_name": "Offline PWA",
+  "description": "An offline-first React PWA starter.",
   "lang": "en",
   "start_url": "/?source=installed",
   "scope": "/",
@@ -23,19 +23,19 @@
   ],
   "icons": [
     {
-      "src": "/icons/calendar-custom-192.png",
+      "src": "/icons/app-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/icons/calendar-custom-512.png",
+      "src": "/icons/app-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/icons/calendar-custom-maskable-512.png",
+      "src": "/icons/app-maskable-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"

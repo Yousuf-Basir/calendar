@@ -1,14 +1,14 @@
-# Calendar installation and offline behavior
+# PWA installation and offline behavior
 
-The app ships a local web app manifest, regular and maskable PNG icons, an Apple touch icon, standalone launch metadata, and a service worker that caches the shell, manifest, icons, scripts, styles and fonts. No PWA or UI package was added. The current launcher artwork is the user-provided `public/calendar-icon.png`. Launcher, Apple touch and favicon sizes are exported to `public/icons/calendar-custom-*.png`. The maskable version adds safe padding on an opaque blue background. Earlier artwork is retained as historical assets.
+The template ships a local manifest, regular and maskable PNG icons, an Apple touch icon, standalone launch metadata, and a service worker that caches the shell, manifest, icons, scripts, styles, and local fonts. Replace the generic P icons in public/icons when starting your own app. No PWA or UI package is required.
 
 ## Install promotion
 
-The bottom drawer opens on the first visit. Cancel (including Escape or tapping the backdrop) saves a two-visit counter: the first subsequent page load keeps it closed, and the second opens it again. Calendar switches and React StrictMode do not count as visits. A small bottom button can always reopen it while uninstalled. Preferences use localStorage, with a safe in-memory fallback if storage is blocked.
+The bottom drawer opens on the first visit. Cancel (including Escape or tapping the backdrop) saves a two-visit counter: the first subsequent page load keeps it closed, and the second opens it again. Component rerenders and React StrictMode do not count as visits. A small bottom button can always reopen it while uninstalled. Preferences use localStorage, with a safe in-memory fallback if storage is blocked.
 
 Install invokes the retained `beforeinstallprompt` event directly from a user click when available. A native rejection uses the same cooldown. Each native prompt is used once. Acceptance closes the drawer; `appinstalled` confirms installation and stores the installed flag. An installed standalone launch, including iOS's `navigator.standalone`, also saves that flag. Cross-tab storage notifications and display-mode changes hide both the drawer and bottom button.
 
-Browsers supporting `getInstalledRelatedApps()` can identify this app through its self-related manifest entry. Detection has a bounded wait so the calendar does not depend on that API responding promptly. A later installable event clears a stale saved installed flag after uninstall.
+Browsers supporting `getInstalledRelatedApps()` can identify this app through its self-related manifest entry. Detection has a bounded wait so the app does not depend on that API responding promptly. A later installable event clears a stale saved installed flag after uninstall.
 
 ## Browser behavior
 
@@ -16,7 +16,7 @@ Browsers supporting `getInstalledRelatedApps()` can identify this app through it
 - iPhone/iPad: Share → Add to Home Screen instructions, including the Open as Web App switch when present. If a browser does not expose that action, instructions direct the user to Safari. No website can trigger Apple's Add to Home Screen sheet itself.
 - Firefox Android: browser-menu installation instructions when no native event is available.
 - Safari on macOS: File → Add to Dock instructions.
-- Desktop browsers without installation support: instructions direct users to Chrome or Edge; the calendar itself still works normally.
+- Desktop browsers without installation support: instructions direct users to Chrome or Edge; the app itself still works normally.
 
 Installation is browser-controlled; one-click installation and reliable installed detection are not universal APIs. Installed app windows never show the promotion. Regular browser tabs also suppress it after a confirmed installation stored on the same origin, or a supported related-app check. Some platforms isolate the installed app's storage from the browser's storage, or lack detection APIs. A manually installed app that has never been opened may therefore still be offered in a regular tab. Clearing site data also clears remembered installation and cancellation. These restrictions cannot be fixed with a manifest or user-agent detection. See [MDN's standalone guide](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/How_to/Create_a_standalone_app) and [Chrome's installed-related-apps guide](https://developer.chrome.com/docs/capabilities/get-installed-related-apps).
 
@@ -26,6 +26,7 @@ Serve the full `dist/` directory over HTTPS from the domain root. Localhost/127.
 
 Run `npm test` and `npm run build`, then `npm run preview -- --host 127.0.0.1`. Tests cover the visit counter, native acceptance/rejection, installed launches, saved status, related-app checks, storage failures, platform instructions, and actual icon dimensions. Test installation on real Android and iOS devices after deploying HTTPS; an emulated viewport cannot validate OS installation. Check the installed launch, hide promotion, close/reopen the app, and reload after disconnecting. Check manual browser-menu installation too. After Cancel, verify the next load stays closed and the following load opens the drawer, with manual reopening still available.
 
-The service worker cache version is `calendar-shell-v6`. Vite injects hashed build assets into `dist/sw.js`. New releases should advance the cache version; installed users need an online visit and reload to receive new code or holiday data. Existing calendar conversion rules and holiday coverage are described in `CALENDAR.md` and `HOLIDAY_UPDATES.md`.
+The service worker cache version is `pwa-offline-shell-v1`. Vite injects hashed build assets into `dist/sw.js`. New releases should advance the cache version; installed users need an online visit and reload to receive new code.
 
-Verification for this change: 20 automated tests and the production build passed. Chrome reloaded the production app and install icon with the preview server stopped. The drawer, manual instructions, reminder button, and Cancel/revisit behavior were exercised in browser previews, including a 320px viewport. Native OS installation completion on physical Android/iOS devices remains a deployment check.
+
+The online/offline indicator reflects browser connectivity (navigator.onLine); it does not guarantee your API is reachable. Offline app loading requires a successful initial online visit and service worker installation. Use the production preview for offline testing; the Vite development server is not a release artifact. The mutation queue flushes while the app is open; this template does not register an OS Background Sync task.

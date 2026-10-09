@@ -9,7 +9,7 @@ function browser({ storage = new Map(), standalone = false, navigator = {} } = {
   const queries = new Map()
   return {
     navigator: { userAgent: 'Chrome', ...navigator },
-    location: { href: 'https://calendar.example/' },
+    location: { href: 'https://pwa.example/' },
     localStorage: {
       getItem: (key) => storage.get(key) ?? null,
       setItem: (key, value) => storage.set(key, value),
@@ -96,7 +96,7 @@ test('standalone and iOS installed launches never display install controls', asy
   }
 })
 
-test('related-app detection identifies only this calendar manifest', async () => {
+test('related-app detection identifies only this app manifest', async () => {
   for (const [url, installed] of [['/manifest.webmanifest', true], ['/another.webmanifest', false]]) {
     const controller = createInstallController(browser({ navigator: {
       getInstalledRelatedApps: async () => [{ platform: 'webapp', url }],
@@ -117,7 +117,7 @@ test('new native offer recovers a saved installed flag after uninstall', async (
   assert.equal(controller.getSnapshot().canPrompt, true)
 })
 
-test('restricted storage and failed detection do not break the calendar', async () => {
+test('restricted storage and failed detection do not break the app', async () => {
   const environment = browser({ navigator: { getInstalledRelatedApps: async () => { throw Error('unsupported') } } })
   environment.localStorage = { getItem() { throw Error('blocked') }, setItem() { throw Error('blocked') } }
   const controller = createInstallController(environment)
@@ -148,7 +148,7 @@ test('manifest and all local install icons exist with correct PNG dimensions', a
     assert.equal(png.readUInt32BE(16), size)
     assert.equal(png.readUInt32BE(20), size)
   }
-  await access('public/icons/calendar-custom-180.png')
+  await access('public/icons/app-180.png')
   const html = await readFile('index.html', 'utf8')
   assert.match(html, /rel="manifest"/)
   assert.match(html, /rel="apple-touch-icon"/)

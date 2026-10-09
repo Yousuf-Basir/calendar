@@ -2,13 +2,12 @@ import { useSyncQueue } from '../hooks/useSyncQueue.js'
 
 export default function SyncStatus() {
   const { isOnline, pendingCount, syncing, sync, lastSynced } = useSyncQueue()
-  if (isOnline && pendingCount === 0 && !lastSynced) return null
 
   return (
     <div className="sync-status">
       <div className="sync-summary" role="status" aria-live="polite">
-        {!isOnline && <span className="status-dot status-dot--offline" aria-hidden="true" />}
-        {!isOnline && <span>Offline</span>}
+        <span className={`status-dot${isOnline ? ' status-dot--online' : ' status-dot--offline'}`} aria-hidden="true" />
+        <span>{isOnline ? 'Online' : 'Offline'}</span>
         {pendingCount > 0 && (
           <span className="sync-detail">{pendingCount} unsynced{syncing ? ' · Syncing…' : ''}</span>
         )}

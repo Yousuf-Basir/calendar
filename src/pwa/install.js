@@ -1,4 +1,4 @@
-export const INSTALL_STORAGE_KEY = 'calendar-install-v1'
+export const INSTALL_STORAGE_KEY = 'pwa-offline-install-v1'
 
 function readRecord(environment) {
   try {
@@ -38,12 +38,12 @@ export function installInstructions(environment) {
   ]
   return [
     'Look for an install button beside the address bar or in the browser’s menu.',
-    'Choose “Install Calendar” or “Install this site as an app”, then confirm.',
+    'Choose “Install Offline PWA” or “Install this site as an app”, then confirm.',
     'If this option is missing, open this page in Chrome or Edge.',
   ]
 }
 
-// One controller per document, outside React effects: StrictMode and calendar
+// One controller per document, outside React effects: StrictMode and app
 // switches must not count as new visits or lose an early browser install event.
 export function createInstallController(environment) {
   let record = readRecord(environment)
@@ -140,7 +140,7 @@ export function createInstallController(environment) {
         } else cancel()
       } catch {
         if (!state.installed) update({ busy: false, instructions: true,
-          message: 'Use your browser’s menu to add Calendar instead.' })
+          message: 'Use your browser’s menu to add Offline PWA instead.' })
       }
     },
     destroy() {

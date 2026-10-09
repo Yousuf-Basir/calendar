@@ -1,196 +1,67 @@
-# react-offline-kit
+# Offline PWA template
 
-[![npm](https://img.shields.io/npm/v/react-offline-kit.svg)](https://www.npmjs.com/package/react-offline-kit)
-[![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![GitHub](https://img.shields.io/badge/GitHub-iamadhitya1-blue?logo=github)](https://github.com/iamadhitya1)
-![React](https://img.shields.io/badge/React-18-61DAFB?logo=react)
-![Zero Dependencies](https://img.shields.io/badge/runtime%20deps-0-brightgreen)
+A minimal React + Vite starter with offline storage and an installable app shell. This branch contains no calendar or todo application.
 
-> React + Vite starter for Progressive Web Apps that work fully offline and sync when connected.
-
-**IndexedDB · Service Worker · Sync Queue · Conflict Resolution**
-
-Clone this. Build your app. It works offline on day one.
-
-<div align="center">
-  <img src="./demo.svg" alt="react-offline-first demo" width="520"/>
-</div>
-
----
-
-## When to use this
-
-Use `react-offline-first` when:
-- You're building a **PWA (Progressive Web App)** that must work without a network connection
-- Your users are **in the field, on mobile, or in low-connectivity environments** (field tools, inspection apps, rural apps)
-- You need **local-first data** — changes write instantly to IndexedDB, sync to your API when online
-- You want **conflict resolution** built in, not bolted on
-
-Not the right fit if your app is purely server-driven with no offline requirement — a standard React + fetch setup is simpler. This template adds real complexity; only use it when offline support is a core feature requirement.
-
----
-
-## Why not Workbox?
-
-Workbox (Google's service worker toolkit) is excellent for caching strategies. It handles *what gets cached* — app shell, images, API responses.
-
-`react-offline-first` solves a different layer: **data mutations while offline**. When a user creates, updates, or deletes a record with no connection, Workbox doesn't queue that write and replay it later. This template does — via a sync queue in IndexedDB that flushes automatically when the connection returns. Use Workbox for cache strategies; use this template for offline-capable CRUD.
-
----
-
-## What's included
-
-| File | What it does |
-|------|-------------|
-| `src/db/indexedDB.js` | Clean async wrapper over browser IndexedDB |
-| `src/sync/syncEngine.js` | Flush queue to your API, resolve conflicts |
-| `src/hooks/useOfflineData.js` | CRUD hook backed by IndexedDB + auto-sync |
-| `src/hooks/useOnlineStatus.js` | Tracks online/offline state |
-| `src/hooks/useSyncQueue.js` | Exposes queue count, sync trigger, last-synced |
-| `public/sw.js` | Service worker — caches app shell for full offline |
-| `src/App.jsx` | Working example: offline-first todo list |
-
----
-
-## Install
-
-**Option A — Use as a template** (start a new project):
+## Start a new project
 
 ```bash
-git clone https://github.com/iamadhitya1/react-offline-first
-cd react-offline-first
+git clone --branch pwa-offline --single-branch https://github.com/Yousuf-Basir/calendar.git my-pwa
+cd my-pwa
 npm install
 npm run dev
 ```
 
-**Option B — Add to an existing React project:**
+Replace the starter content in `src/App.jsx` with your application.
+
+## Included
+
+- IndexedDB storage and local CRUD through `useOfflineData`.
+- Persistent mutation queue, reconnection sync, and configurable conflict resolution.
+- Always-visible online/offline indicator with pending sync status.
+- Installation drawer with native browser prompts and platform-specific instructions.
+- Standalone manifest, regular/maskable PNG icons, and Apple touch icon.
+- Service worker with production precaching of scripts, styles, fonts, and icons.
+- Local font assets, with no remote font dependency.
+
+## Offline data
+
+The original offline infrastructure is preserved in `src/db`, `src/hooks`, and `src/sync`. Import hooks from the local source files:
+
+```jsx
+import { useOfflineData } from './hooks/useOfflineData.js'
+
+// Inside your own component:
+const { records, loading, add, update, remove, reload } = useOfflineData('records')
+// await add({ title: 'Example record' })
+// await update({ id: recordId, title: 'Updated record' })
+// await remove(recordId)
+```
+
+Writes save to IndexedDB immediately and enter the persistent sync queue. The starter screen creates no sample records. Configure your backend in `src/main.jsx` before using cloud sync; no backend is included. The default API base is `/api`.
+
+The existing sync engine supports `newer-wins`, `client-wins`, `server-wins`, or a custom `(local, server) => record` conflict strategy. Its API contract is:
+
+```text
+GET    /api/{collection}/{id}   -> record or 404
+POST   /api/{collection}        -> create record
+PUT    /api/{collection}/{id}   -> replace record
+DELETE /api/{collection}/{id}   -> delete record
+```
+
+## Customize and deploy
+
+Update the name and copy in `src/App.jsx`, `src/components/InstallDrawer.jsx`, and `src/pwa/install.js`. Replace the icons in `public/icons` and update `index.html` and `public/manifest.webmanifest` for your app. Give your app unique IndexedDB, installation preference, and service worker cache names.
 
 ```bash
-npm install react-offline-kit
+npm test
+npm run build
+npm run preview
 ```
 
-Then import the hooks you need:
+Deploy the complete `dist/` directory at your domain root over HTTPS. See [PWA.md](PWA.md) for caching, installation, and offline verification. This is a source template, not the published `react-offline-kit` npm package.
 
-```js
-import { useOfflineData } from 'react-offline-kit'
-import { useOnlineStatus } from 'react-offline-kit'
-import { useSyncQueue } from 'react-offline-kit'
-```
+## Attribution and license
 
----
+Based on [react-offline-first](https://github.com/iamadhitya1/react-offline-first) by M. Adhitya. The upstream IndexedDB wrapper, hooks, and sync engine are retained. PWA installation and production asset precaching were added in this project.
 
-## Core hook — `useOfflineData`
-
-```jsx
-import { useOfflineData } from 'react-offline-first'
-
-function TodoList() {
-  const { records, loading, add, update, remove } = useOfflineData('todos')
-
-  const handleAdd = async () => {
-    await add({ text: 'Buy milk', done: false })
-    // Saved to IndexedDB instantly.
-    // Queued for cloud sync. Synced when online.
-  }
-
-  return records.map(todo => <div key={todo.id}>{todo.text}</div>)
-}
-```
-
-Every `add`, `update`, `remove`:
-1. Writes to **IndexedDB** immediately — no waiting
-2. Pushes to **sync queue**
-3. Flushes to your API if online — silently queues if not
-4. Auto-flushes when connection is restored
-
----
-
-## Sync Engine
-
-```js
-import { configureSyncEngine } from 'react-offline-kit'
-
-configureSyncEngine({
-  apiBase: 'https://your-api.com/api',
-  conflictStrategy: 'newer-wins',   // 'client-wins' | 'server-wins' | 'newer-wins' | fn
-  getHeaders: () => ({
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${getToken()}`,
-  }),
-  onSyncComplete: ({ synced, failed }) => {
-    console.log(`Synced ${synced}, failed ${failed}`)
-  },
-  onConflict: ({ local, server, resolved }) => {
-    console.log('Conflict resolved:', resolved)
-  },
-})
-```
-
-### Conflict strategies
-
-| Strategy | Behaviour |
-|----------|-----------|
-| `newer-wins` | Whichever record has the higher `updatedAt` wins *(default)* |
-| `client-wins` | Local change always overwrites server |
-| `server-wins` | Server version replaces local on conflict |
-| `(local, server) => record` | Custom function — full control |
-
----
-
-## Sync status UI
-
-```jsx
-import { useSyncQueue } from 'react-offline-first'
-
-function SyncBadge() {
-  const { isOnline, pendingCount, syncing, sync } = useSyncQueue()
-
-  return (
-    <div>
-      {isOnline ? '🟢 Online' : '🔴 Offline'}
-      {pendingCount > 0 && ` · ${pendingCount} unsynced`}
-      {isOnline && pendingCount > 0 && (
-        <button onClick={sync}>{syncing ? 'Syncing…' : 'Sync now'}</button>
-      )}
-    </div>
-  )
-}
-```
-
----
-
-## API contract
-
-The sync engine expects your API to follow this pattern:
-
-```
-GET    /api/{collection}/{id}   → 200 { ...record } | 404
-POST   /api/{collection}        → 201 { ...record }
-PUT    /api/{collection}/{id}   → 200 { ...record }
-DELETE /api/{collection}/{id}   → 204
-```
-
-Works with any backend — Express, FastAPI, Supabase Edge Functions, etc.
-
----
-
-## Service Worker
-
-The included `sw.js` caches the app shell (HTML, JS, CSS) so the app loads instantly even with no network. API calls are never cached — only the static app shell.
-
-Registered automatically in `App.jsx`:
-```js
-navigator.serviceWorker.register('/sw.js')
-```
-
----
-
-## Author
-
-**[M. Adhitya](https://iamadhitya.vercel.app)** — Builder, [Rewrite Labs](https://rewritelabs.vercel.app) · [Newsletter](https://adhitya.beehiiv.com/)
-
-## License
-
-MIT © 2025 [M. Adhitya](https://iamadhitya.vercel.app)
-
-Built at [Rewrite Labs](https://rewritelabs.vercel.app)
+[MIT license](LICENSE); original attribution is preserved.

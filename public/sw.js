@@ -3,12 +3,12 @@
  * Serves cached assets when offline, fetches fresh when online.
  */
 
-const CACHE_NAME = 'calendar-shell-v6'
+const CACHE_NAME = 'pwa-offline-shell-v1'
 // Vite fills this list for production. Dev assets are cached as requested.
 const BUILD_ASSETS = /* build assets */ []
 const STATIC_ASSETS = ['/', '/index.html', '/manifest.webmanifest',
-  '/icons/calendar-custom-32.png', '/icons/calendar-custom-180.png',
-  '/icons/calendar-custom-192.png', '/icons/calendar-custom-512.png', '/icons/calendar-custom-maskable-512.png',
+  '/icons/app-32.png', '/icons/app-180.png',
+  '/icons/app-192.png', '/icons/app-512.png', '/icons/app-maskable-512.png',
   ...BUILD_ASSETS]
 
 // Install — cache app shell
@@ -23,7 +23,7 @@ self.addEventListener('install', (event) => {
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((keys) =>
-      Promise.all(keys.filter((k) => k.startsWith('calendar-shell-') && k !== CACHE_NAME).map((k) => caches.delete(k)))
+      Promise.all(keys.filter((k) => k.startsWith('pwa-offline-shell-') && k !== CACHE_NAME).map((k) => caches.delete(k)))
     )
   )
   self.clients.claim()
@@ -46,9 +46,10 @@ self.addEventListener('fetch', (event) => {
         return response
       })
       .catch(async () => {
-        const cached = await caches.match(event.request)
+        const cache = await caches.open(CACHE_NAME)
+        const cached = await cache.match(event.request)
         if (cached) return cached
-        if (event.request.mode === 'navigate') return caches.match('/index.html')
+        if (event.request.mode === 'navigate') return cache.match('/index.html')
         return Response.error()
       })
   )

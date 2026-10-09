@@ -5,23 +5,6 @@
   font-display: swap;
   src: url("./assets/fonts/dm-sans-latin.woff2") format("woff2");
 }
-@font-face {
-  font-family: 'Noto Sans Bengali';
-  font-style: normal;
-  font-weight: 400 800;
-  font-display: swap;
-  src: url('./assets/fonts/noto-sans-bengali.woff2') format('woff2');
-  unicode-range: U+0980-09FF, U+200C-200D;
-}
-@font-face {
-  font-family: 'Noto Sans Arabic';
-  font-style: normal;
-  font-weight: 400 800;
-  font-display: swap;
-  src: url('./assets/fonts/noto-sans-arabic.woff2') format('woff2');
-  unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+200C-200D;
-}
-
 :root {
   color-scheme: light;
   --color-backdrop: #e6ddcf;
@@ -32,7 +15,7 @@
   --color-red: #b5322a;
   --color-border: #c9c5bc;
   --color-soft: #d2cfc6;
-  --font-sans: "DM Sans", "Noto Sans Bengali", "Noto Sans Arabic", Arial, sans-serif;
+  --font-sans: "DM Sans", Arial, sans-serif;
   --font-size-small: 0.75rem;
   --font-size-body: 1rem;
   --space-1: 0.25rem;
@@ -110,39 +93,6 @@ button:disabled {
   font-weight: 700;
   letter-spacing: -0.04em;
 }
-.language-switch {
-  display: grid;
-  grid-template-columns: repeat(3, auto);
-  flex-shrink: 0;
-  gap: 2px;
-  padding: 3px;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-control);
-  background: var(--color-soft);
-}
-.language-switch-button {
-  min-width: 0;
-  min-height: 28px;
-  padding: var(--space-1) 8px;
-  border: 0;
-  border-radius: var(--radius-control);
-  background: transparent;
-  color: var(--color-muted);
-  font-size: 0.6875rem;
-  font-weight: 500;
-}
-.language-switch-button:hover {
-  background: var(--color-surface);
-  color: var(--color-ink);
-}
-.language-switch-button[aria-pressed="true"] {
-  background: var(--color-ink);
-  color: white;
-  font-weight: 700;
-}
-.language-switch-button:focus-visible {
-  outline-offset: 1px;
-}
 .sync-status {
   max-width: 65%;
   margin-inline-start: auto;
@@ -197,55 +147,7 @@ button:disabled {
 .home {
   padding-top: clamp(2rem, 6dvh, 3rem);
 }
-.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
-.calendar { margin-top: 0; }
-.calendar-toolbar { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--space-2); margin-bottom: var(--space-6); }
-.calendar-month-heading { min-width: 0; color: var(--color-accent); font-size: clamp(1.75rem, 7vw, 2.25rem); font-weight: 700; line-height: 1.15; letter-spacing: -0.04em; }
-.calendar-month-heading span { display: block; margin-top: 6px; color: var(--color-muted); font-size: 1.125rem; font-weight: 400; letter-spacing: 0; }
-.calendar-navigation { display: flex; flex-shrink: 0; align-items: center; gap: 2px; }
-.calendar-navigation button { min-height: 36px; border: 0; background: transparent; color: var(--color-ink); }
-.calendar-today { padding: var(--space-1) var(--space-2); font-size: 0.75rem; font-weight: 500; }
-.calendar-arrow { display: grid; place-items: center; width: 32px; padding: 0; border-radius: var(--radius-round); }
-.calendar-arrow::before { content: ''; width: 7px; height: 7px; border-top: 1.5px solid currentColor; border-right: 1.5px solid currentColor; transform: rotate(45deg); }
-.calendar-arrow--previous::before { transform: rotate(-135deg); }
-.calendar-navigation button:hover { background: var(--color-soft); }
-.calendar-carousel { position: relative; display: flex; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
-.calendar-carousel::-webkit-scrollbar { display: none; }
-.month-page { flex: 0 0 100%; width: 100%; min-width: 0; scroll-snap-align: center; scroll-snap-stop: always; }
-.month-grid { width: 100%; table-layout: fixed; border-collapse: separate; border-spacing: 3px 6px; }
-.month-grid th { height: 38px; padding: 0 1px; color: var(--color-muted); font-size: clamp(0.6875rem, 3vw, 0.8125rem); font-weight: 500; line-height: 1.4; overflow-wrap: anywhere; vertical-align: top; }
-.home[data-language="bn"] .calendar-month-heading { letter-spacing: 0; line-height: 1.4; }
-.month-grid abbr { text-decoration: none; }
-.month-grid td { height: var(--calendar-cell-size, 2rem); padding: 0; }
-.calendar-day { position: relative; display: grid; place-items: center; width: 100%; aspect-ratio: 1; min-height: 30px; padding: 0; border: 1px solid transparent; border-radius: var(--radius-round); background: var(--color-soft); color: var(--color-ink); font-size: 0.8125rem; font-weight: 500; font-variant-numeric: tabular-nums; }
-.calendar-day.is-today { background: var(--color-accent); }
-.is-friday, .month-grid th.is-friday { color: var(--color-red); }
-.calendar-day.is-friday { color: var(--color-red); }
-.holiday-marker { display: inline-block; width: 4px; height: 4px; border-radius: var(--radius-round); background: var(--color-red); }
-.calendar-day .holiday-marker { position: absolute; bottom: 4px; inset-inline-start: calc(50% - 2px); }
-.holiday-marker--regional { border: 1px solid var(--color-red); background: transparent; }
-.calendar-note { color: var(--color-muted); font-size: 0.75rem; line-height: 1.6; margin-top: var(--space-3); }
-.calendar-note span { display: block; }
-.holiday-list { margin-top: var(--space-6); padding-top: var(--space-4); border-top: 1px solid var(--color-border); }
-.holiday-list h3 { margin: 0; font-size: 0.8125rem; font-weight: 700; }
-.holiday-list > ul { list-style: none; margin: var(--space-3) 0 0; padding: 0; display: grid; gap: var(--space-3); }
-.holiday-list > ul > li { display: flex; align-items: flex-start; gap: var(--space-3); font-size: 0.8125rem; line-height: 1.5; }
-.holiday-list time { display: flex; flex-direction: column; flex: 0 0 6.5rem; color: var(--color-red); font-variant-numeric: tabular-nums; }
-.holiday-list time strong { font-size: 1.125rem; line-height: 1.3; }
-.holiday-list time span { color: var(--color-muted); font-size: 0.6875rem; }
-.holiday-list small { display: block; color: var(--color-muted); font-size: 0.6875rem; }
-@media (prefers-reduced-motion: reduce) { .calendar-carousel { scroll-behavior: auto; } }
-@media (max-width: 340px) {
-  .app-shell {
-    padding-inline: var(--space-4);
-  }
-  .language-switch-button {
-    padding-inline: var(--space-1);
-    font-size: 0.625rem;
-  }
-}
-
-/* Installation promotion stays within the same mobile canvas as the calendar. */
+/* Installation promotion stays within the same mobile canvas as the app. */
 .app-shell.has-install-offer { padding-bottom: calc(116px + env(safe-area-inset-bottom)); }
 .install-offer { position: fixed; z-index: 10; inset-inline: 0; bottom: 0; width: 100%; max-width: var(--app-width); margin-inline: auto; padding: 14px 24px max(16px, env(safe-area-inset-bottom)); text-align: center; background: var(--color-surface); border-top: 1px solid var(--color-border); }
 .install-offer p { margin-bottom: 8px; font-size: 0.75rem; color: var(--color-muted); }
@@ -282,4 +184,8 @@ button:disabled {
 @media (prefers-reduced-motion: reduce) { .install-drawer[open] { animation: none; } }
 @media (max-width: 340px) { .install-drawer { padding-inline: 16px; } .install-app { gap: 12px; } }
 
-.calendar-english-range { display: block; margin-top: 8px; color: var(--color-muted); font-size: 0.75rem; font-weight: 400; line-height: 1.4; letter-spacing: 0; }
+
+.status-dot--online { background: #357443; }
+.home h2 { font-size: 2rem; line-height: 1.15; letter-spacing: -0.04em; }
+.home p { margin-top: 20px; color: var(--color-muted); line-height: 1.7; }
+@media (max-width: 340px) { .app-shell { padding-inline: 16px; } }

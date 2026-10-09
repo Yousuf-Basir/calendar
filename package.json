@@ -1,5 +1,5 @@
 {
-  "name": "react-offline-kit",
+  "name": "pwa-offline-template",
   "version": "1.0.2",
   "description": "React + Vite template for offline-first apps — IndexedDB, service worker, background sync, and conflict resolution.",
   "type": "module",
@@ -27,14 +27,13 @@
     "url": "https://iamadhitya.vercel.app",
     "email": "adhitya5119@gmail.com"
   },
-  "homepage": "https://iamadhitya.vercel.app",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/iamadhitya1/react-offline-first"
+    "url": "https://github.com/Yousuf-Basir/calendar.git"
   },
   "scripts": {
-    "test": "node --test src/calendar/calendar.test.js src/pwa/install.test.js",
+    "test": "node --test src/pwa/install.test.js",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview --port 4177 --host"
@@ -46,5 +45,6 @@
   "devDependencies": {
     "@vitejs/plugin-react": "^4.0.0",
     "vite": "^5.0.0"
-  }
+  },
+  "private": true
 }
