@@ -161,3 +161,14 @@ test('service worker precache URLs are unique and all local static files exist',
   assert.equal(new Set(urls).size, urls.length, 'duplicate requests make cache.addAll fail')
   for (const url of urls) await access(url === '/' || url === '/index.html' ? 'index.html' : `public${url}`)
 })
+
+test('Bangla installation instructions cover every supported browser path', () => {
+  for (const navigator of [
+    { userAgent: 'iPhone' }, { platform: 'MacIntel', maxTouchPoints: 5 },
+    { userAgent: 'Macintosh Safari' }, { userAgent: 'Android Firefox' }, { userAgent: 'Chrome' },
+  ]) {
+    const steps = installInstructions(browser({ navigator }), 'bn')
+    assert.ok(steps.length >= 2)
+    assert.ok(steps.every(step => typeof step === 'string' && /[\u0980-\u09ff]/u.test(step)))
+  }
+})

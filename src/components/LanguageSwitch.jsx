@@ -1,13 +1,14 @@
+import { UI } from '../i18n/ui.js'
 const LANGUAGES = [
   { id: 'en', label: 'English' },
   { id: 'bn', label: 'Bangla' },
   { id: 'ar', label: 'Arabic' },
 ]
 
-export default function LanguageSwitch({ value, onChange }) {
+export default function LanguageSwitch({ value, onChange, appLanguage = 'en' }) {
   return (
-    <div className="language-switch" role="group" aria-label="Calendar language">
-      {LANGUAGES.map(({ id, label }) => (
+    <div className="language-switch" role="group" aria-label={UI[appLanguage].calendarType}>
+      {LANGUAGES.map(({ id }, index) => (
         <button
           key={id}
           type="button"
@@ -15,7 +16,7 @@ export default function LanguageSwitch({ value, onChange }) {
           aria-pressed={value === id}
           onClick={() => onChange(id)}
         >
-          {label}
+          {UI[appLanguage].types[index]}
         </button>
       ))}
     </div>

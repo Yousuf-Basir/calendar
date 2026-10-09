@@ -33,3 +33,7 @@ Run `npm test` for conversion, leap-year, holiday, and grid checks, including ro
 
 
 For the annual download, verification, data update, and offline release procedure, see [HOLIDAY_UPDATES.md](HOLIDAY_UPDATES.md).
+
+## App language
+
+The menu button before the title opens a left settings drawer. App language (English or Bangla) is separate from the English/Bangla/Hijri calendar selector. The saved choice uses localStorage key `calendar-language-v1`, defaults to English, and falls back safely when storage is blocked. Bangla localizes the interface, all calendar labels and numbers, holiday names, connection status, and installation instructions. Browser-owned installation prompts follow the browser/OS language.

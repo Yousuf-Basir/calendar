@@ -19,7 +19,7 @@ export function isStandalone(environment) {
       environment.matchMedia(`(display-mode: ${mode})`).matches)
 }
 
-export function installInstructions(environment) {
+function englishInstallInstructions(environment) {
   const { userAgent = '', platform = '', maxTouchPoints = 0 } = environment.navigator
   const appleMobile = /iPad|iPhone|iPod/.test(userAgent) || (platform === 'MacIntel' && maxTouchPoints > 1)
   if (appleMobile) return [
@@ -151,4 +151,23 @@ export function createInstallController(environment) {
       listeners.clear()
     },
   }
+}
+
+const BENGALI_INSTRUCTIONS = {
+  'Open the browser’s Share menu.': 'ব্রাউজারের শেয়ার মেনু খুলুন।',
+  'Choose “Add to Home Screen”. You may need to tap “More” first.': '“Add to Home Screen” (হোম স্ক্রিনে যোগ করুন) বেছে নিন। প্রয়োজনে আগে “More” (আরও) চাপুন।',
+  'Keep “Open as Web App” on if shown, then tap “Add”.': '“Open as Web App” (ওয়েব অ্যাপ হিসেবে খুলুন) দেখালে চালু রাখুন, তারপর “Add” (যোগ করুন) চাপুন।',
+  'If this option is missing, open this page in Safari and try again.': 'এই অপশন না থাকলে সাফারিতে এই পৃষ্ঠাটি খুলে আবার চেষ্টা করুন।',
+  'Open this page in Safari.': 'সাফারিতে এই পৃষ্ঠাটি খুলুন।',
+  'Choose File → Add to Dock, then choose “Add”.': '“File” থেকে “Add to Dock” (ডকে যোগ করুন) বেছে নিন, তারপর “Add” (যোগ করুন) চাপুন।',
+  'Open the browser’s menu.': 'ব্রাউজারের মেনু খুলুন।',
+  'Choose “Install app” or “Add to Home screen”, then confirm.': '“Install app” (অ্যাপ ইনস্টল করুন) অথবা “Add to Home screen” (হোম স্ক্রিনে যোগ করুন) বেছে নিয়ে নিশ্চিত করুন।',
+  'If this option is missing, open this page in Chrome or Samsung Internet.': 'এই অপশন না থাকলে ক্রোম বা স্যামসাং ইন্টারনেটে এই পৃষ্ঠাটি খুলুন।',
+  'Look for an install button beside the address bar or in the browser’s menu.': 'অ্যাড্রেস বারের পাশে অথবা ব্রাউজারের মেনুতে ইনস্টল করার বোতাম খুঁজুন।',
+  'Choose “Install Calendar” or “Install this site as an app”, then confirm.': 'ক্যালেন্ডার ইনস্টল করুন অথবা এই সাইট অ্যাপ হিসেবে ইনস্টল করার অপশন বেছে নিয়ে নিশ্চিত করুন।',
+  'If this option is missing, open this page in Chrome or Edge.': 'এই অপশন না থাকলে ক্রোম বা এজে এই পৃষ্ঠাটি খুলুন।',
+}
+export function installInstructions(environment, language = 'en') {
+  const steps = englishInstallInstructions(environment)
+  return language === 'bn' ? steps.map((step) => BENGALI_INSTRUCTIONS[step]) : steps
 }

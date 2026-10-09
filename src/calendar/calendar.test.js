@@ -1,4 +1,5 @@
-import { formatGregorianRange, LABELS } from './labels.js'
+import { readLanguage, saveLanguage, LANGUAGE_STORAGE_KEY } from '../i18n/ui.js'
+import { formatGregorianRange, LABELS, calendarLabels } from './labels.js'
 import { holidayPeriod } from './holidays.js'
 import test from 'node:test'
 import assert from 'node:assert/strict'
@@ -155,4 +156,30 @@ test('English month ranges use inclusive boundaries and show years across New Ye
   assert.equal(formatGregorianRange(calendarMonth(isoToDay('2026-10-08'), 'bn')), '16 Sept – 16 Oct')
   assert.equal(formatGregorianRange(calendarMonth(isoToDay('2026-10-08'), 'ar')), '13 Sept – 11 Oct')
   assert.equal(formatGregorianRange({ start: isoToDay('2026-12-16'), end: isoToDay('2027-01-16') }), '16 Dec 2026 – 15 Jan 2027')
+})
+
+test('app language persists and safely defaults when storage is unavailable or invalid', () => {
+  const values = new Map()
+  const storage = { getItem: key => values.get(key), setItem: (key, value) => values.set(key, value) }
+  assert.equal(readLanguage(storage), 'en')
+  saveLanguage(storage, 'bn')
+  assert.equal(readLanguage(storage), 'bn')
+  values.set(LANGUAGE_STORAGE_KEY, 'invalid')
+  assert.equal(readLanguage(storage), 'en')
+  const blocked = { getItem() { throw Error('blocked') }, setItem() { throw Error('blocked') } }
+  assert.equal(readLanguage(blocked), 'en')
+  assert.doesNotThrow(() => saveLanguage(blocked, 'bn'))
+})
+
+test('Bangla app language localizes all calendar systems without changing their dates', () => {
+  for (const system of ['en', 'bn', 'ar']) {
+    const labels = calendarLabels(system, 'bn')
+    assert.equal(labels.months.length, 12)
+    assert.equal(labels.today, 'আজকের তারিখ দেখুন')
+    assert.equal(labels.weekdayNames[5], 'শুক্রবার')
+    assert.ok(labels.months.every(name => /[\u0980-\u09ff]/u.test(name)))
+    assert.doesNotMatch(formatGregorianRange(calendarMonth(isoToDay('2026-10-09'), system), 'bn'), /[A-Za-z0-9]/)
+  }
+  assert.equal(calendarLabels('en', 'bn').months[9], 'অক্টোবর')
+  assert.equal(calendarLabels('ar', 'bn').months[8], 'রমজান')
 })

@@ -106,7 +106,7 @@ button:disabled {
   gap: var(--space-2);
 }
 .app-name {
-  font-size: var(--font-size-body);
+  font-size: 1.25rem;
   font-weight: 700;
   letter-spacing: -0.04em;
 }
@@ -122,13 +122,13 @@ button:disabled {
 }
 .language-switch-button {
   min-width: 0;
-  min-height: 28px;
+  min-height: 32px;
   padding: var(--space-1) 8px;
   border: 0;
   border-radius: var(--radius-control);
   background: transparent;
   color: var(--color-muted);
-  font-size: 0.6875rem;
+  font-size: 0.8125rem;
   font-weight: 500;
 }
 .language-switch-button:hover {
@@ -204,7 +204,7 @@ button:disabled {
 .calendar-month-heading span { display: block; margin-top: 6px; color: var(--color-muted); font-size: 1.125rem; font-weight: 400; letter-spacing: 0; }
 .calendar-navigation { display: flex; flex-shrink: 0; align-items: center; gap: 2px; }
 .calendar-navigation button { min-height: 36px; border: 0; background: transparent; color: var(--color-ink); }
-.calendar-today { padding: var(--space-1) var(--space-2); font-size: 0.75rem; font-weight: 500; }
+.calendar-today { padding: var(--space-1) var(--space-2); font-size: 0.9375rem; font-weight: 500; }
 .calendar-arrow { display: grid; place-items: center; width: 32px; padding: 0; border-radius: var(--radius-round); }
 .calendar-arrow::before { content: ''; width: 7px; height: 7px; border-top: 1.5px solid currentColor; border-right: 1.5px solid currentColor; transform: rotate(45deg); }
 .calendar-arrow--previous::before { transform: rotate(-135deg); }
@@ -217,23 +217,23 @@ button:disabled {
 .home[data-language="bn"] .calendar-month-heading { letter-spacing: 0; line-height: 1.4; }
 .month-grid abbr { text-decoration: none; }
 .month-grid td { height: var(--calendar-cell-size, 2rem); padding: 0; }
-.calendar-day { position: relative; display: grid; place-items: center; width: 100%; aspect-ratio: 1; min-height: 30px; padding: 0; border: 1px solid transparent; border-radius: var(--radius-round); background: var(--color-soft); color: var(--color-ink); font-size: 0.8125rem; font-weight: 500; font-variant-numeric: tabular-nums; }
+.calendar-day { position: relative; display: grid; place-items: center; width: 100%; aspect-ratio: 1; min-height: 30px; padding: 0; border: 1px solid transparent; border-radius: var(--radius-round); background: var(--color-soft); color: var(--color-ink); font-size: 0.9375rem; font-weight: 500; font-variant-numeric: tabular-nums; }
 .is-friday, .month-grid th.is-friday { color: var(--color-red); }
 .calendar-day.is-friday { color: var(--color-red); }
 .calendar-day.is-today { background: var(--color-accent); color: #fff; }
-.holiday-marker { display: inline-block; width: 4px; height: 4px; border-radius: var(--radius-round); background: var(--color-red); }
-.calendar-day .holiday-marker { position: absolute; bottom: 4px; inset-inline-start: calc(50% - 2px); }
+.holiday-marker { display: inline-block; width: 6px; height: 6px; border-radius: var(--radius-round); background: var(--color-red); }
+.calendar-day .holiday-marker { position: absolute; bottom: 4px; inset-inline-start: calc(50% - 3px); }
 .holiday-marker--regional { border: 1px solid var(--color-red); background: transparent; }
 .calendar-note { color: var(--color-muted); font-size: 0.75rem; line-height: 1.6; margin-top: var(--space-3); }
 .calendar-note span { display: block; }
 .holiday-list { margin-top: var(--space-6); padding-top: var(--space-4); border-top: 1px solid var(--color-border); }
-.holiday-list h3 { margin: 0; font-size: 0.8125rem; font-weight: 700; }
+.holiday-list h3 { margin: 0; font-size: 1rem; font-weight: 700; }
 .holiday-list > ul { list-style: none; margin: var(--space-3) 0 0; padding: 0; display: grid; gap: var(--space-3); }
-.holiday-list > ul > li { display: flex; align-items: flex-start; gap: var(--space-3); font-size: 0.8125rem; line-height: 1.5; }
+.holiday-list > ul > li { display: flex; align-items: flex-start; gap: var(--space-3); font-size: 0.9375rem; line-height: 1.5; }
 .holiday-list time { display: flex; flex-direction: column; flex: 0 0 6.5rem; color: var(--color-red); font-variant-numeric: tabular-nums; }
-.holiday-list time strong { font-size: 1.125rem; line-height: 1.3; }
-.holiday-list time span { color: var(--color-muted); font-size: 0.6875rem; }
-.holiday-list small { display: block; color: var(--color-muted); font-size: 0.6875rem; }
+.holiday-list time strong { font-size: 1.25rem; line-height: 1.3; }
+.holiday-list time span { color: var(--color-muted); font-size: 0.8125rem; }
+.holiday-list small { display: block; color: var(--color-muted); font-size: 0.8125rem; }
 @media (prefers-reduced-motion: reduce) { .calendar-carousel { scroll-behavior: auto; } }
 @media (max-width: 340px) {
   .app-shell {
@@ -283,3 +283,28 @@ button:disabled {
 @media (max-width: 340px) { .install-drawer { padding-inline: 16px; } .install-app { gap: 12px; } }
 
 .calendar-english-range { display: block; margin-top: 8px; color: var(--color-muted); font-size: 0.75rem; font-weight: 400; line-height: 1.4; letter-spacing: 0; }
+
+/* Navigation settings share the existing app palette. */
+.app-brand { display: flex; align-items: center; gap: 4px; min-width: 0; }
+.menu-button { display: inline-grid; place-items: center; width: 44px; min-width: 44px; height: 44px; padding: 10px; border: 0; border-radius: 10px; background: transparent; color: var(--color-ink); }
+.menu-button:hover { background: var(--color-soft); }
+.burger-icon { display: grid; gap: 5px; width: 24px; }
+.burger-icon span { height: 2px; border-radius: 2px; background: currentColor; }
+.settings-drawer { position: fixed; inset: 0 auto 0 0; margin: 0; width: min(320px, calc(100vw - 32px)); max-width: none; height: 100dvh; max-height: 100dvh; padding: max(24px, env(safe-area-inset-top)) 24px max(24px, env(safe-area-inset-bottom)); border: 0; background: var(--color-surface); color: var(--color-ink); overflow-y: auto; overscroll-behavior: contain; box-shadow: 12px 0 48px #1d1e1b1f; }
+.settings-drawer[open] { animation: settings-in 180ms ease-out; }
+.settings-drawer::backdrop { background: #1d1e1b70; }
+.settings-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.settings-header h2 { font-size: 1.25rem; }
+.settings-header .menu-button { font-size: 1.75rem; }
+.settings-language { min-width: 0; margin: 32px 0 0; padding: 0; border: 0; }
+.settings-language legend { margin-bottom: 12px; font-size: 0.875rem; font-weight: 700; }
+.settings-language label { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 0; cursor: pointer; }
+.settings-language label + label { border-top: 1px solid var(--color-border); }
+.settings-language input { width: 18px; height: 18px; accent-color: var(--color-ink); }
+html[lang="bn"] .app-name { letter-spacing: 0; }
+@keyframes settings-in { from { transform: translateX(-100%); } to { transform: translateX(0); } }
+@media (prefers-reduced-motion: reduce) { .settings-drawer[open] { animation: none; } }
+@media (max-width: 380px) { .app-header { flex-wrap: wrap; } .language-switch { margin-left: auto; } }
+
+.holiday-list h3 > small { margin-top: 4px; font-size: 0.875rem; font-weight: 400; }
+.holiday-list > .calendar-note { font-size: 0.875rem; }

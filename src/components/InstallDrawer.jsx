@@ -1,8 +1,10 @@
+import { UI } from '../i18n/ui.js'
 import { useEffect, useRef } from 'react'
 import { installInstructions } from '../pwa/install.js'
 import { installController } from '../pwa/installStore.js'
 
-export default function InstallDrawer({ state }) {
+export default function InstallDrawer({ state, language = 'en' }) {
+  const text = UI[language]
   const dialog = useRef(null)
   useEffect(() => {
     const element = dialog.current
@@ -22,11 +24,11 @@ export default function InstallDrawer({ state }) {
   if (!state.ready || state.installed) return null
   return (
     <>
-      <aside className="install-offer" aria-label="Get the Calendar app">
-        <p>Keep your calendar one tap away.</p>
+      <aside className="install-offer" aria-label={text.getApp}>
+        <p>{text.keep}</p>
         <button className="install-pill" type="button" onClick={() => installController.open()}>
           <img src="/icons/calendar-custom-32.png" alt="" width="22" height="22" />
-          Get Calendar <span aria-hidden="true">↗</span>
+          {text.get} <span aria-hidden="true">↗</span>
         </button>
       </aside>
       <dialog ref={dialog} className="install-drawer" aria-labelledby="install-title" aria-describedby="install-description"
@@ -38,22 +40,22 @@ export default function InstallDrawer({ state }) {
         }}>
         <div className="drawer-handle" aria-hidden="true" />
         <div className="install-app">
-          <img className="install-app-icon" src="/icons/calendar-custom-192.png" alt="Calendar app icon" width="76" height="76" />
-          <div><p className="install-eyebrow">YOUR EVERYDAY COMPANION</p><h2 id="install-title">Calendar</h2><p>Make room for your days.</p></div>
+          <img className="install-app-icon" src="/icons/calendar-custom-192.png" alt={text.icon} width="76" height="76" />
+          <div><p className="install-eyebrow">{text.eyebrow}</p><h2 id="install-title">{text.title}</h2><p>{text.tagline}</p></div>
         </div>
-        <div className="install-features" aria-label="App features">
-          <span><strong>3</strong>Calendars</span><span><strong>Offline</strong>Always with you</span><span><strong>Free</strong>No account needed</span>
+        <div className="install-features" aria-label={text.features}>
+          <span><strong>{language === 'bn' ? '৩' : '3'}</strong>{text.calendars}</span><span><strong>{text.offline}</strong>{text.always}</span><span><strong>{text.free}</strong>{text.account}</span>
         </div>
-        <p id="install-description">Add Calendar to your home screen. Your dates and Bangladesh holidays, even without internet.</p>
+        <p id="install-description">{text.description}</p>
         {state.instructions && <div className="install-instructions" role="status">
-          <h3>Add Calendar to your device</h3>
-          <ol>{installInstructions(window).map((step) => <li key={step}>{step}</li>)}</ol>
-          <p>Once added, open Calendar from its icon.</p>
+          <h3>{text.add}</h3>
+          <ol>{installInstructions(window, language).map((step) => <li key={step}>{step}</li>)}</ol>
+          <p>{text.once}</p>
         </div>}
-        {state.message && <p role="status" className="install-message">{state.message}</p>}
+        {state.message && <p role="status" className="install-message">{text.fallback}</p>}
         <div className="install-actions">
-          <button type="button" className="install-primary" disabled={state.busy} onClick={() => installController.install()}>{state.busy ? 'Opening…' : 'Install'}</button>
-          <button type="button" className="install-cancel" disabled={state.busy} onClick={() => installController.cancel()}>Cancel</button>
+          <button type="button" className="install-primary" disabled={state.busy} onClick={() => installController.install()}>{state.busy ? text.opening : text.install}</button>
+          <button type="button" className="install-cancel" disabled={state.busy} onClick={() => installController.cancel()}>{text.cancel}</button>
         </div>
       </dialog>
     </>
