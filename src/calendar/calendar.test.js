@@ -95,18 +95,41 @@ test('holiday data includes amendments without treating optional or regional lea
 })
 
 
-test('switching calendars retains English-month holidays beyond native month boundaries', () => {
-  const viewedDate = isoToDay('2026-10-08')
-  const { holidays, workingDays } = holidayPeriod(viewedDate)
-  assert.deepEqual(holidays.map(({ date }) => date), ['2026-10-20', '2026-10-21', '2026-10-22'])
-  assert.deepEqual(workingDays, ['2026-10-17'])
-  assert.ok(isoToDay(holidays[0].date) >= calendarMonth(viewedDate, 'bn').end)
-  assert.ok(isoToDay(holidays[0].date) >= calendarMonth(viewedDate, 'ar').end)
-  assert.deepEqual(calendarParts(isoToDay(holidays[0].date), 'bn'), { year: 1433, month: 6, day: 4 })
-  assert.deepEqual(calendarParts(isoToDay(holidays[0].date), 'ar'), { year: 1448, month: 4, day: 9 })
-  assert.deepEqual(holidayPeriod(isoToDay('2026-11-08')).holidays.map(({ date }) => date), ['2026-11-07'])
+test('holiday lists follow the displayed Gregorian, Bengali and Hijri month', () => {
+  const october = isoToDay('2026-10-08')
+  assert.deepEqual(holidayPeriod(october, 'en').holidays.map(({ date }) => date),
+    ['2026-10-20', '2026-10-21', '2026-10-22'])
+  for (const system of ['bn', 'ar']) {
+    const current = holidayPeriod(october, system)
+    assert.deepEqual(current.holidays, [], system)
+    assert.deepEqual(current.workingDays, [], system)
+    const next = holidayPeriod(current.month.end, system)
+    assert.ok(next.holidays.some(({ date }) => date === '2026-10-20'), system)
+    assert.deepEqual(next.workingDays, ['2026-10-17'], system)
+    for (const period of [current, next]) {
+      for (const date of [...period.holidays.map(({ date }) => date), ...period.workingDays]) {
+        const day = isoToDay(date)
+        assert.ok(day >= period.month.start && day < period.month.end, system + ' ' + date)
+        const parts = calendarParts(day, system)
+        assert.equal(parts.month, period.month.month)
+        assert.equal(parts.year, period.month.year)
+      }
+    }
+  }
+  // The same Bengali month must yield the same list on either side of November 1.
+  assert.deepEqual(holidayPeriod(isoToDay('2026-10-17'), 'bn'),
+    holidayPeriod(isoToDay('2026-11-08'), 'bn'))
 })
 
+test('holiday coverage checks Gregorian years across native month boundaries', () => {
+  for (const system of ['bn', 'ar']) {
+    const period = holidayPeriod(isoToDay('2026-12-31'), system)
+    assert.ok(period.month.start < isoToDay('2027-01-01'))
+    assert.ok(period.month.end > isoToDay('2027-01-01'))
+    assert.deepEqual(period.missingYears, [2027])
+    assert.deepEqual(holidayPeriod(isoToDay('2026-10-08'), system).missingYears, [])
+  }
+})
 
 test('Sunday-first grids show exactly the current month in all three calendars', () => {
   for (const system of ['en', 'bn', 'ar']) {

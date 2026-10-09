@@ -1,6 +1,6 @@
 import { useLayoutEffect, useRef } from 'react'
 import {
-  calendarMonth, calendarParts, canShiftMonth, dayToDate, dayToIso,
+  calendarMonth, calendarParts, canShiftMonth, dayToIso,
   monthCells, shiftMonth, weekdayIndex,
   isoToDay,
 } from '../calendar/calendar.js'
@@ -8,13 +8,12 @@ import { holidayPeriod } from '../calendar/holidays.js'
 import { formatGregorianRange, formatNumber, LABELS } from '../calendar/labels.js'
 import {
   holidayForDate, holidayName,
-  HOLIDAY_YEARS,
 } from '../data/bangladesh-holidays.js'
 
 function dateLabel(day, language) {
   const parts = calendarParts(day, language)
   const labels = LABELS[language]
-  const holiday = holidayForDate(dayToIso(day))
+  const holiday = language === 'en' ? holidayForDate(dayToIso(day)) : undefined
   return `${labels.weekdayNames[weekdayIndex(day)]}, ${formatNumber(parts.day, language)} ${labels.months[parts.month]} ${formatNumber(parts.year, language)}${holiday ? `, ${holidayName(holiday, language === 'ar' ? 'en' : language)}${holiday.scope === 'regional' ? ` (${labels.regional})` : ''}` : ''}`
 }
 
@@ -35,7 +34,7 @@ function MonthGrid({ month, language, today, active }) {
         <tbody>{Array.from({ length: 6 }, (_, row) => (
           <tr key={row}>{cells.slice(row * 7, row * 7 + 7).map((day, column) => {
             if (day === null) return <td key={column} className="calendar-blank" />
-            const holiday = holidayForDate(dayToIso(day))
+            const holiday = language === 'en' ? holidayForDate(dayToIso(day)) : undefined
             const parts = calendarParts(day, language)
             return (
               <td key={column}>
@@ -111,11 +110,8 @@ export default function Calendar({ language, viewedDate, today, onChangeMonth })
       behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
     })
   }
-  const { month: holidayMonth, holidays: monthHolidays, workingDays } = holidayPeriod(viewedDate)
-  const missingYears = HOLIDAY_YEARS.includes(holidayMonth.year) ? [] : [holidayMonth.year]
-  const holidayMonthLabel = new Intl.DateTimeFormat(language === 'bn' ? 'bn-BD' : 'en', {
-    month: 'long', year: 'numeric', calendar: 'gregory', timeZone: 'UTC',
-  }).format(dayToDate(viewedDate))
+  const { holidays: monthHolidays, workingDays, missingYears } = holidayPeriod(viewedDate, language)
+  const holidayMonthLabel = `${labels.months[month.month]} ${formatNumber(month.year, language)}`
 
   return (
     <section className="calendar" aria-label={`${labels.months[month.month]} ${formatNumber(month.year, language)}`}>
@@ -141,7 +137,7 @@ export default function Calendar({ language, viewedDate, today, onChangeMonth })
           {(!month.confirmed || !month.lengthConfirmed) && <span>{labels.moonNote}</span>}
         </p>
       )}
-      <section className="holiday-list" aria-labelledby="holiday-heading">
+      {language === 'en' && <section className="holiday-list" aria-labelledby="holiday-heading">
         <h3 id="holiday-heading">{labels.holidays}<small>{holidayMonthLabel}</small></h3>
         {monthHolidays.length > 0 ? (
           <ul>{monthHolidays.map((holiday) => {
@@ -163,7 +159,7 @@ export default function Calendar({ language, viewedDate, today, onChangeMonth })
           const parts = calendarParts(isoToDay(date), language)
           return <p key={date} className="calendar-note">{labels.working}: {formatNumber(parts.day, language)} {labels.months[parts.month]} {formatNumber(parts.year, language)}</p>
         })}
-      </section>
+      </section>}
     </section>
   )
 }

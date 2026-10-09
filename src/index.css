@@ -218,9 +218,9 @@ button:disabled {
 .month-grid abbr { text-decoration: none; }
 .month-grid td { height: var(--calendar-cell-size, 2rem); padding: 0; }
 .calendar-day { position: relative; display: grid; place-items: center; width: 100%; aspect-ratio: 1; min-height: 30px; padding: 0; border: 1px solid transparent; border-radius: var(--radius-round); background: var(--color-soft); color: var(--color-ink); font-size: 0.8125rem; font-weight: 500; font-variant-numeric: tabular-nums; }
-.calendar-day.is-today { background: var(--color-accent); }
 .is-friday, .month-grid th.is-friday { color: var(--color-red); }
 .calendar-day.is-friday { color: var(--color-red); }
+.calendar-day.is-today { background: var(--color-accent); color: #fff; }
 .holiday-marker { display: inline-block; width: 4px; height: 4px; border-radius: var(--radius-round); background: var(--color-red); }
 .calendar-day .holiday-marker { position: absolute; bottom: 4px; inset-inline-start: calc(50% - 2px); }
 .holiday-marker--regional { border: 1px solid var(--color-red); background: transparent; }
