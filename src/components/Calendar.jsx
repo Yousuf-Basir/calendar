@@ -136,12 +136,6 @@ export default function Calendar({ language, appLanguage = 'en', viewedDate, tod
           <MonthGrid key={page.key} month={page} language={language} appLanguage={appLanguage} today={today} active={index === 1} />
         ))}
       </div>
-      {language === 'ar' && (
-        <p className="calendar-note">
-          {month.confirmed ? labels.confirmed : labels.estimated}
-          {(!month.confirmed || !month.lengthConfirmed) && <span>{labels.moonNote}</span>}
-        </p>
-      )}
       {language === 'en' && <section className="holiday-list" aria-labelledby="holiday-heading">
         <h3 id="holiday-heading">{labels.holidays}<small>{holidayMonthLabel}</small></h3>
         {monthHolidays.length > 0 ? (

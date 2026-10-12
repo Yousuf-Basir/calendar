@@ -27,24 +27,8 @@ test('Bengali reform aligns New Year and national days, including leap years', (
   }
 })
 
-test('confirmed Bangladesh Hijri dates match the local announcements', () => {
-  const fixtures = [
-    ['2026-02-19', 1447, 8, 1], ['2026-03-20', 1447, 8, 30],
-    ['2026-03-21', 1447, 9, 1], ['2026-04-19', 1447, 9, 30],
-    ['2026-04-20', 1447, 10, 1], ['2026-05-28', 1447, 11, 10],
-    ['2026-06-17', 1448, 0, 1], ['2026-06-26', 1448, 0, 10],
-    ['2026-08-26', 1448, 2, 12], ['2026-09-13', 1448, 3, 1],
-  ]
-  for (const [date, year, month, day] of fixtures) {
-    assert.deepEqual(calendarParts(isoToDay(date), 'ar'), { year, month, day }, date)
-  }
-  assert.equal(calendarMonth(isoToDay('2026-10-08'), 'ar').confirmed, true)
-  assert.equal(calendarMonth(isoToDay('2026-10-08'), 'ar').lengthConfirmed, false)
-  assert.equal(calendarMonth(isoToDay('2026-12-01'), 'ar').confirmed, false)
-})
-
 test('all supported days round-trip and months remain contiguous in all systems', () => {
-  for (const system of ['en', 'bn', 'ar']) {
+  for (const system of ['en', 'bn']) {
     for (let day = MIN_DAY; day <= MAX_DAY; day++) {
       const parts = calendarParts(day, system)
       const start = monthStart(parts.year, parts.month, system)
@@ -53,8 +37,7 @@ test('all supported days round-trip and months remain contiguous in all systems'
       assert.ok(day >= start && day < end)
       if (parts.day === 1) {
         const minimum = system === 'en' ? 28 : 29
-        const maximum = system === 'ar' ? 30 : 31
-        assert.ok(end - start >= minimum && end - start <= maximum, `${system} month length ${end - start}`)
+        assert.ok(end - start >= minimum && end - start <= 31, `${system} month length ${end - start}`)
       }
     }
   }
@@ -66,14 +49,14 @@ test('month navigation clamps the day and respects year and range boundaries', (
   assert.equal(dayToIso(shiftMonth(isoToDay('2026-12-08'), 'en', 1)), '2027-01-08')
   const bangla = calendarParts(shiftMonth(isoToDay('2026-04-13'), 'bn', 1), 'bn')
   assert.deepEqual(bangla, { year: 1433, month: 0, day: 30 })
-  for (const system of ['en', 'bn', 'ar']) {
+  for (const system of ['en', 'bn']) {
     assert.equal(canShiftMonth(MIN_DAY, system, -1), false)
     assert.equal(canShiftMonth(MAX_DAY, system, 1), false)
   }
 })
 
 test('grid places actual Fridays in the red column in every calendar', () => {
-  for (const system of ['en', 'bn', 'ar']) {
+  for (const system of ['en', 'bn']) {
     const cells = monthCells(calendarMonth(isoToDay('2026-10-08'), system))
     assert.equal(cells.length, 42)
     cells.forEach((day, index) => {
@@ -96,11 +79,11 @@ test('holiday data includes amendments without treating optional or regional lea
 })
 
 
-test('holiday lists follow the displayed Gregorian, Bengali and Hijri month', () => {
+test('holiday lists follow the displayed Gregorian and Bengali month', () => {
   const october = isoToDay('2026-10-08')
   assert.deepEqual(holidayPeriod(october, 'en').holidays.map(({ date }) => date),
     ['2026-10-20', '2026-10-21', '2026-10-22'])
-  for (const system of ['bn', 'ar']) {
+  for (const system of ['bn']) {
     const current = holidayPeriod(october, system)
     assert.deepEqual(current.holidays, [], system)
     assert.deepEqual(current.workingDays, [], system)
@@ -123,7 +106,7 @@ test('holiday lists follow the displayed Gregorian, Bengali and Hijri month', ()
 })
 
 test('holiday coverage checks Gregorian years across native month boundaries', () => {
-  for (const system of ['bn', 'ar']) {
+  for (const system of ['bn']) {
     const period = holidayPeriod(isoToDay('2026-12-31'), system)
     assert.ok(period.month.start < isoToDay('2027-01-01'))
     assert.ok(period.month.end > isoToDay('2027-01-01'))
@@ -132,8 +115,8 @@ test('holiday coverage checks Gregorian years across native month boundaries', (
   }
 })
 
-test('Sunday-first grids show exactly the current month in all three calendars', () => {
-  for (const system of ['en', 'bn', 'ar']) {
+test('Sunday-first grids show exactly the current month in both calendars', () => {
+  for (const system of ['en', 'bn']) {
     assert.equal(LABELS[system].weekdayNames[5], system === 'bn' ? 'শুক্রবার' : 'Friday')
     for (let gregorianMonth = 1; gregorianMonth <= 12; gregorianMonth++) {
       const month = calendarMonth(isoToDay(`2026-${String(gregorianMonth).padStart(2, '0')}-08`), system)
@@ -154,7 +137,6 @@ test('Sunday-first grids show exactly the current month in all three calendars',
 
 test('English month ranges use inclusive boundaries and show years across New Year', () => {
   assert.equal(formatGregorianRange(calendarMonth(isoToDay('2026-10-08'), 'bn')), '16 Sept – 16 Oct')
-  assert.equal(formatGregorianRange(calendarMonth(isoToDay('2026-10-08'), 'ar')), '13 Sept – 11 Oct')
   assert.equal(formatGregorianRange({ start: isoToDay('2026-12-16'), end: isoToDay('2027-01-16') }), '16 Dec 2026 – 15 Jan 2027')
 })
 
@@ -172,7 +154,7 @@ test('app language persists and safely defaults when storage is unavailable or i
 })
 
 test('Bangla app language localizes all calendar systems without changing their dates', () => {
-  for (const system of ['en', 'bn', 'ar']) {
+  for (const system of ['en', 'bn']) {
     const labels = calendarLabels(system, 'bn')
     assert.equal(labels.months.length, 12)
     assert.equal(labels.today, 'আজকের তারিখ দেখুন')
@@ -181,5 +163,4 @@ test('Bangla app language localizes all calendar systems without changing their 
     assert.doesNotMatch(formatGregorianRange(calendarMonth(isoToDay('2026-10-09'), system), 'bn'), /[A-Za-z0-9]/)
   }
   assert.equal(calendarLabels('en', 'bn').months[9], 'অক্টোবর')
-  assert.equal(calendarLabels('ar', 'bn').months[8], 'রমজান')
 })

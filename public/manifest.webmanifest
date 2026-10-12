@@ -2,7 +2,7 @@
   "id": "/",
   "name": "Calendar",
   "short_name": "Calendar",
-  "description": "English, Bangla and Hijri calendars with Bangladesh holidays. Available offline.",
+  "description": "English and Bangla calendars with Bangladesh holidays. Available offline.",
   "lang": "en",
   "start_url": "/?source=installed",
   "scope": "/",

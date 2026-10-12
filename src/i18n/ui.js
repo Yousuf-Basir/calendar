@@ -12,7 +12,7 @@ export function saveLanguage(storage, language) {
 export const UI = {
   en: {
     title: 'Calendar', menu: 'Open menu', settings: 'Settings', close: 'Close menu', language: 'App language',
-    calendarType: 'Calendar type', types: ['English', 'Bangla', 'Arabic'],
+    calendarType: 'Calendar type', types: ['English', 'Bangla'],
     offline: 'Offline', unsynced: 'unsynced', syncing: 'Syncing…', lastSynced: 'Last synced', sync: 'Sync now',
     getApp: 'Get the Calendar app', keep: 'Keep your calendar one tap away.', get: 'Get Calendar',
     icon: 'Calendar app icon', eyebrow: 'YOUR EVERYDAY COMPANION', tagline: 'Make room for your days.',
@@ -23,7 +23,7 @@ export const UI = {
   },
   bn: {
     title: 'ক্যালেন্ডার', menu: 'মেনু খুলুন', settings: 'সেটিংস', close: 'মেনু বন্ধ করুন', language: 'অ্যাপের ভাষা',
-    calendarType: 'ক্যালেন্ডারের ধরন', types: ['ইংরেজি', 'বাংলা', 'আরবি'],
+    calendarType: 'ক্যালেন্ডারের ধরন', types: ['ইংরেজি', 'বাংলা'],
     offline: 'অফলাইন', unsynced: 'সিঙ্ক বাকি', syncing: 'সিঙ্ক হচ্ছে…', lastSynced: 'সর্বশেষ সিঙ্ক', sync: 'এখন সিঙ্ক করুন',
     getApp: 'ক্যালেন্ডার অ্যাপ নিন', keep: 'আপনার ক্যালেন্ডার রাখুন এক স্পর্শের দূরত্বে।', get: 'ক্যালেন্ডার নিন',
     icon: 'ক্যালেন্ডার অ্যাপের আইকন', eyebrow: 'আপনার প্রতিদিনের সঙ্গী', tagline: 'দিনগুলো গুছিয়ে নিন।',

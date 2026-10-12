@@ -2,7 +2,6 @@ import { UI } from '../i18n/ui.js'
 const LANGUAGES = [
   { id: 'en', label: 'English' },
   { id: 'bn', label: 'Bangla' },
-  { id: 'ar', label: 'Arabic' },
 ]
 
 export default function LanguageSwitch({ value, onChange, appLanguage = 'en' }) {

@@ -8,8 +8,6 @@ export const LABELS = {
     today: 'Show today', previous: 'Previous month', next: 'Next month', holidays: 'Bangladesh holidays',
     none: 'No government holidays this month.', unavailable: 'Official holiday dates not loaded for',
     holiday: 'Government holiday', regional: 'Chittagong Hill Tracts only', weekly: 'Friday',
-    confirmed: 'Bangladesh Hijri · confirmed start', estimated: 'Bangladesh Hijri · estimated dates',
-    moonNote: 'Unconfirmed month boundaries are estimates; local moon sightings may change them.',
     source: 'Holiday sources', working: 'Government working day',
   },
   bn: {
@@ -21,22 +19,10 @@ export const LABELS = {
     holiday: 'সরকারি ছুটি', regional: 'শুধু পার্বত্য তিন জেলা', weekly: 'শুক্রবার',
     source: 'ছুটির উৎস', working: 'সরকারি কর্মদিবস',
   },
-  ar: {
-    months: ['Muharram', 'Safar', 'Rabi al-Awwal', 'Rabi al-Thani', 'Jumada al-Ula', 'Jumada al-Thani', 'Rajab', 'Shaban', 'Ramadan', 'Shawwal', 'Dhu al-Qadah', 'Dhu al-Hijjah'],
-    weekdays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-    weekdayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-    today: 'Show today', previous: 'Previous month', next: 'Next month', holidays: 'Bangladesh holidays',
-    none: 'No government holidays this month.', unavailable: 'Official holiday dates not loaded for',
-    regional: 'Chittagong Hill Tracts only',
-    confirmed: 'Bangladesh Hijri · confirmed start', estimated: 'Bangladesh Hijri · estimated dates',
-    moonNote: 'Unconfirmed month boundaries are estimates; local moon sightings may change them.',
-    working: 'Government working day',
-  },
 }
 const formatters = {
   en: new Intl.NumberFormat('en', { useGrouping: false }),
   bn: new Intl.NumberFormat('bn-BD', { useGrouping: false }),
-  ar: new Intl.NumberFormat('en', { useGrouping: false }),
 }
 export function formatNumber(value, language, pad = false) {
   const formatted = formatters[language].format(value)
@@ -56,13 +42,8 @@ export function formatGregorianRange(month, language = 'en') {
 const BENGALI_MONTHS = {
   en: ['জানুয়ারি', 'ফেব্রুয়ারি', 'মার্চ', 'এপ্রিল', 'মে', 'জুন', 'জুলাই', 'আগস্ট', 'সেপ্টেম্বর', 'অক্টোবর', 'নভেম্বর', 'ডিসেম্বর'],
   bn: LABELS.bn.months,
-  ar: ['মুহররম', 'সফর', 'রবিউল আউয়াল', 'রবিউস সানি', 'জমাদিউল আউয়াল', 'জমাদিউস সানি', 'রজব', 'শাবান', 'রমজান', 'শাওয়াল', 'জিলকদ', 'জিলহজ'],
 }
 export function calendarLabels(system, appLanguage = 'en') {
   if (appLanguage !== 'bn') return { ...LABELS[system], today: LABELS.en.today }
-  return {
-    ...LABELS.bn, months: BENGALI_MONTHS[system],
-    confirmed: 'বাংলাদেশের হিজরি · মাসের শুরু নিশ্চিত', estimated: 'বাংলাদেশের হিজরি · আনুমানিক তারিখ',
-    moonNote: 'অনিশ্চিত মাসের তারিখগুলো আনুমানিক; স্থানীয় চাঁদ দেখার ভিত্তিতে পরিবর্তন হতে পারে।',
-  }
+  return { ...LABELS.bn, months: BENGALI_MONTHS[system] }
 }

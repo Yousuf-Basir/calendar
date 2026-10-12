@@ -6,9 +6,9 @@ Maintenance guide for this app, written 8 October 2026. The next annual update i
 
 The app does **not** fetch holidays from the internet. It bundles verified records in `src/data/bangladesh-holidays.js` and includes them in its JavaScript build. The service worker caches that build for offline use. To add a year, download the official documents, update the records, test, rebuild, and publish the app. Users receive the new data when they open the updated app online; they can then use it offline.
 
-Keep one Gregorian date for each holiday. `calendarParts()` converts it to Bangladesh's Bengali calendar or the Bangladesh Hijri calendar. Do not create separate holiday datasets for the three views.
+Keep one Gregorian date for each holiday. `calendarParts()` converts it to Bangladesh's Bengali calendar. Do not create separate holiday datasets for the two views.
 
-The holiday list uses the Gregorian month containing the browsed date in every view. Its heading identifies that month. The native calendar grid keeps its own month boundaries, so a listed holiday can belong to the following Bengali or Hijri month. Grid markers appear only on the actual matching date.
+The holiday list uses the Gregorian month containing the browsed date in every view. Its heading identifies that month. The native calendar grid keeps its own month boundaries, so a listed holiday can belong to the following Bengali month. Grid markers appear only on the actual matching date.
 
 ## 1. Find and download the official list
 
@@ -93,29 +93,13 @@ Reuse the existing `names` keys where appropriate. An entry has the format:
 ['MM-DD', ['holidayNameKey'], 'regional'] // restricted scope
 ```
 
-New names need English and Bangla translations. Existing name objects also retain an `ar` field; preserve that shape when adding names, although the Hijri view currently displays English.
+New names need English and Bangla translations.
 
 Keep `WORKING_DAYS` as full ISO dates, retaining historical entries and adding only next year's explicitly ordered exceptions. Update `HOLIDAYS_VERIFIED_ON` to your actual review date. Add the annual PDF and amendment URLs to `HOLIDAY_SOURCES`, clearly identifying the year. These sources remain hidden in the UI.
 
 Keep dates unique across `BANGLADESH_HOLIDAYS`: `holidayForDate()` builds a map with one record per ISO date. Duplicate rows would cause the map to keep only one while the list renders both.
 
-## 4. Update Bangladesh Hijri observations separately
-
-Government holiday dates and Hijri month boundaries are separate inputs. Adding next year's Gregorian holidays automatically gives them Bengali dates. It also gives them Hijri dates, but future Hijri boundaries remain estimates until observed starts are added.
-
-Use Bangladesh's National Moon Sighting Committee announcements, available through the [Islamic Foundation](https://islamicfoundation.gov.bd/) and official reports. Add confirmed month starts to `src/data/bangladesh-moon-starts.js`, with the supporting source URL, and update `MOON_STARTS_VERIFIED_ON`.
-
-Each entry records the **first civil daytime date** of the month, not the preceding sunset:
-
-```js
-{ year: HIJRI_YEAR, month: ZERO_BASED_MONTH, date: 'YYYY-MM-DD', source: 'VERIFIED_URL' }
-```
-
-Month indices run from `0` for Muharram to `11` for Dhu al-Hijjah. Keep entries chronological and avoid duplicate year/month pairs. Do not insert Saudi calendar dates or arithmetic forecasts as confirmed Bangladesh observations. Preserve the UI's estimate wording for unconfirmed boundaries.
-
-If a new observation changes a previously estimated conversion, update affected forecast-based test expectations using the announcement as evidence. Do not change confirmed-date fixtures merely to make tests pass.
-
-## 5. Validate the update
+## 4. Validate the update
 
 From the project folder:
 
@@ -130,15 +114,15 @@ Add assertions to `src/calendar/calendar.test.js` using several dates taken dire
 In the production preview:
 
 1. Browse to months with verified next-year holidays.
-2. Switch between English, Bangla, and Arabic. The same Gregorian-month holidays should remain listed, with converted dates and correct language.
+2. Switch between English and Bangla. The same Gregorian-month holidays should remain listed, with converted dates and correct language.
 3. Confirm that red dots match actual civil dates inside each native grid. A holiday outside the native month should remain in the list without being assigned to an unrelated cell.
 4. Check Bengali New Year, February/leap-year conversions, year boundaries, Friday columns, and month swiping.
 5. Visit an unloaded year and confirm the missing-data message still appears.
-6. Open the production app online in Chrome, allow its service worker to install, then reload offline and switch all three views. Verify holidays, fonts, and month navigation still work.
+6. Open the production app online in Chrome, allow its service worker to install, then reload offline and switch both views. Verify holidays, fonts, and month navigation still work.
 
 Vite development mode is not the release offline check. Use the production build and preview.
 
-## 6. Publish and refresh offline clients
+## 5. Publish and refresh offline clients
 
 Before building the release, give `CACHE_NAME` in `public/sw.js` a new unique version, such as `calendar-shell-2027-r1`. Use a new version for subsequent amendments too. `vite.config.js` injects the newly hashed JavaScript, CSS, and local font files into the built worker's asset list.
 
@@ -154,4 +138,4 @@ For this small offline app, the manual verified-data release above is the recomm
 
 The browser can then fetch it when online, validate its schema/year/unique dates, and save a successfully validated complete dataset in IndexedDB. It must retain the last good data and bundled fallback when a request fails, never replace records with an empty or partial response, and avoid falsely marking a year as covered. The UI would also need to read this saved dataset; simply adding a fetch call does not change the current static imports.
 
-Keep moon observations separately versioned. Official PDF pages are not a guaranteed stable JSON API, and scraping them directly from the browser creates parsing, cross-origin, and offline problems. This optional pipeline is a future feature; it has not been implemented by this documentation update.
+Official PDF pages are not a guaranteed stable JSON API, and scraping them directly from the browser creates parsing, cross-origin, and offline problems. This optional pipeline is a future feature; it has not been implemented by this documentation update.
