@@ -8,6 +8,22 @@ import {
   MIN_DAY, monthCells, monthStart, shiftMonth, todayInBangladesh, weekdayIndex,
 } from './calendar.js'
 import { holidayForDate, HOLIDAY_YEARS, WORKING_DAYS } from '../data/bangladesh-holidays.js'
+import '../data/projections.test.js'
+import '../data/projection-builder.test.js'
+import '../data/updater-integration.test.js'
+import './holiday-ui.test.js'
+
+test('projected coverage follows the displayed month including empty and mixed-year periods', () => {
+  for (let month = 1; month <= 12; month++) {
+    const period = holidayPeriod(isoToDay(`2027-${String(month).padStart(2, '0')}-08`), 'en')
+    assert.deepEqual(period.projectedYears, [2027])
+    assert.deepEqual(period.missingYears, [])
+  }
+  assert.deepEqual(holidayPeriod(isoToDay('2026-10-08'), 'en').projectedYears, [])
+  assert.deepEqual(holidayPeriod(isoToDay('2026-12-31'), 'bn').projectedYears, [2027])
+  assert.deepEqual(holidayPeriod(isoToDay('2036-12-31'), 'bn').projectedYears, [2036])
+  assert.deepEqual(holidayPeriod(isoToDay('2037-01-08'), 'en').projectedYears, [])
+})
 
 test('Bangladesh date changes at Dhaka midnight, independent of device timezone', () => {
   assert.equal(dayToIso(todayInBangladesh(new Date('2026-10-08T17:59:59Z'))), '2026-10-08')
@@ -75,7 +91,8 @@ test('holiday data includes amendments without treating optional or regional lea
   assert.equal(holidayForDate('2026-03-24'), undefined)
   assert.equal(holidayForDate('2026-01-01'), undefined)
   assert.ok(WORKING_DAYS.has('2026-10-17'))
-  assert.equal(HOLIDAY_YEARS.includes(2027), false)
+  assert.equal(HOLIDAY_YEARS.includes(2027), true)
+  assert.equal(HOLIDAY_YEARS.includes(2037), false)
 })
 
 
@@ -110,7 +127,8 @@ test('holiday coverage checks Gregorian years across native month boundaries', (
     const period = holidayPeriod(isoToDay('2026-12-31'), system)
     assert.ok(period.month.start < isoToDay('2027-01-01'))
     assert.ok(period.month.end > isoToDay('2027-01-01'))
-    assert.deepEqual(period.missingYears, [2027])
+    assert.deepEqual(period.missingYears, [])
+    assert.deepEqual(holidayPeriod(isoToDay('2036-12-31'), system).missingYears, [2037])
     assert.deepEqual(holidayPeriod(isoToDay('2026-10-08'), system).missingYears, [])
   }
 })

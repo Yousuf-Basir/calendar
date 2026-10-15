@@ -301,3 +301,4 @@ html[lang="bn"] .app-name { letter-spacing: 0; }
 
 .holiday-list h3 > small { margin-top: 4px; font-size: 0.875rem; font-weight: 400; }
 .holiday-list > .calendar-note { font-size: 0.875rem; }
+.holiday-list > .holiday-warning { margin-top: var(--space-3); padding-inline-start: var(--space-3); border-inline-start: 3px solid var(--color-red); color: var(--color-ink); line-height: 1.6; }

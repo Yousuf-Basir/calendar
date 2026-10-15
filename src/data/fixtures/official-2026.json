@@ -1,0 +1,348 @@
+{
+  "holidays": [
+    {
+      "date": "2026-02-04",
+      "names": [
+        {
+          "en": "Shab-e-Barat",
+          "bn": "শবে বরাত"
+        }
+      ],
+      "scope": "national"
+    },
+    {
+      "date": "2026-02-11",
+      "names": [
+        {
+          "en": "Election holiday",
+          "bn": "নির্বাচন উপলক্ষে ছুটি"
+        }
+      ],
+      "scope": "national"
+    },
+    {
+      "date": "2026-02-12",
+      "names": [
+        {
+          "en": "Election holiday",
+          "bn": "নির্বাচন উপলক্ষে ছুটি"
+        }
+      ],
+      "scope": "national"
+    },
+    {
+      "date": "2026-02-21",
+      "names": [
+        {
+          "en": "Language Martyrs’ Day",
+          "bn": "শহীদ দিবস ও আন্তর্জাতিক মাতৃভাষা দিবস"
+        }
+      ],
+      "scope": "national"
+    },
+    {
+      "date": "2026-03-17",
+      "names": [
+        {
+          "en": "Shab-e-Qadr",
+          "bn": "শবে কদর"
+        }
+      ],
+      "scope": "national"
+    },
+    {
+      "date": "2026-03-18",
+      "names": [
+        {
+          "en": "Eid-ul-Fitr holiday",
+          "bn": "ঈদুল ফিতরের ছুটি"
+        }
+      ],
+      "scope": "national"
+    },
+    {
+      "date": "2026-03-19",
+      "names": [
+        {
+          "en": "Eid-ul-Fitr holiday",
+          "bn": "ঈদুল ফিতরের ছুটি"
+        }
+      ],
+      "scope": "national"
+    },
+    {
+      "date": "2026-03-20",
+      "names": [
+        {
+          "en": "Jumatul Bida",
+          "bn": "জুমাতুল বিদা"
+        },
+        {
+          "en": "Eid-ul-Fitr holiday",
+          "bn": "ঈদুল ফিতরের ছুটি"
+        }
+      ],
+      "scope": "national"
+    },
+    {
+      "date": "2026-03-21",
+      "names": [
+        {
+          "en": "Eid-ul-Fitr holiday",
+          "bn": "ঈদুল ফিতরের ছুটি"
+        }
+      ],
+      "scope": "national"
+    },
+    {
+      "date": "2026-03-22",
+      "names": [
+        {
+          "en": "Eid-ul-Fitr holiday",
+          "bn": "ঈদুল ফিতরের ছুটি"
+        }
+      ],
+      "scope": "national"
+    },
+    {
+      "date": "2026-03-23",
+      "names": [
+        {
+          "en": "Eid-ul-Fitr holiday",
+          "bn": "ঈদুল ফিতরের ছুটি"
+        }
+      ],
+      "scope": "national"
+    },
+    {
+      "date": "2026-03-26",
+      "names": [
+        {
+          "en": "Independence Day",
+          "bn": "স্বাধীনতা ও জাতীয় দিবস"
+        }
+      ],
+      "scope": "national"
+    },
+    {
+      "date": "2026-04-13",
+      "names": [
+        {
+          "en": "Chaitra Sankranti",
+          "bn": "চৈত্র সংক্রান্তি"
+        }
+      ],
+      "scope": "regional"
+    },
+    {
+      "date": "2026-04-14",
+      "names": [
+        {
+          "en": "Bengali New Year",
+          "bn": "বাংলা নববর্ষ"
+        }
+      ],
+      "scope": "national"
+    },
+    {
+      "date": "2026-05-01",
+      "names": [
+        {
+          "en": "May Day",
+          "bn": "মে দিবস"
+        },
+        {
+          "en": "Buddha Purnima",
+          "bn": "বুদ্ধ পূর্ণিমা"
+        }
+      ],
+      "scope": "national"
+    },
+    {
+      "date": "2026-05-26",
+      "names": [
+        {
+          "en": "Eid-ul-Adha holiday",
+          "bn": "ঈদুল আজহার ছুটি"
+        }
+      ],
+      "scope": "national"
+    },
+    {
+      "date": "2026-05-27",
+      "names": [
+        {
+          "en": "Eid-ul-Adha holiday",
+          "bn": "ঈদুল আজহার ছুটি"
+        }
+      ],
+      "scope": "national"
+    },
+    {
+      "date": "2026-05-28",
+      "names": [
+        {
+          "en": "Eid-ul-Adha holiday",
+          "bn": "ঈদুল আজহার ছুটি"
+        }
+      ],
+      "scope": "national"
+    },
+    {
+      "date": "2026-05-29",
+      "names": [
+        {
+          "en": "Eid-ul-Adha holiday",
+          "bn": "ঈদুল আজহার ছুটি"
+        }
+      ],
+      "scope": "national"
+    },
+    {
+      "date": "2026-05-30",
+      "names": [
+        {
+          "en": "Eid-ul-Adha holiday",
+          "bn": "ঈদুল আজহার ছুটি"
+        }
+      ],
+      "scope": "national"
+    },
+    {
+      "date": "2026-05-31",
+      "names": [
+        {
+          "en": "Eid-ul-Adha holiday",
+          "bn": "ঈদুল আজহার ছুটি"
+        }
+      ],
+      "scope": "national"
+    },
+    {
+      "date": "2026-06-26",
+      "names": [
+        {
+          "en": "Ashura",
+          "bn": "আশুরা"
+        }
+      ],
+      "scope": "national"
+    },
+    {
+      "date": "2026-08-05",
+      "names": [
+        {
+          "en": "July Uprising Day",
+          "bn": "জুলাই গণঅভ্যুত্থান দিবস"
+        }
+      ],
+      "scope": "national"
+    },
+    {
+      "date": "2026-08-26",
+      "names": [
+        {
+          "en": "Eid-e-Miladunnabi",
+          "bn": "ঈদে মিলাদুন্নবী"
+        }
+      ],
+      "scope": "national"
+    },
+    {
+      "date": "2026-09-04",
+      "names": [
+        {
+          "en": "Janmashtami",
+          "bn": "জন্মাষ্টমী"
+        }
+      ],
+      "scope": "national"
+    },
+    {
+      "date": "2026-10-20",
+      "names": [
+        {
+          "en": "Durga Puja · Navami",
+          "bn": "দুর্গাপূজা · নবমী"
+        }
+      ],
+      "scope": "national"
+    },
+    {
+      "date": "2026-10-21",
+      "names": [
+        {
+          "en": "Durga Puja · Dashami",
+          "bn": "দুর্গাপূজা · বিজয়া দশমী"
+        }
+      ],
+      "scope": "national"
+    },
+    {
+      "date": "2026-10-22",
+      "names": [
+        {
+          "en": "Durga Puja holiday",
+          "bn": "দুর্গাপূজার অতিরিক্ত ছুটি"
+        }
+      ],
+      "scope": "national"
+    },
+    {
+      "date": "2026-11-07",
+      "names": [
+        {
+          "en": "National Revolution and Solidarity Day",
+          "bn": "জাতীয় বিপ্লব ও সংহতি দিবস"
+        }
+      ],
+      "scope": "national"
+    },
+    {
+      "date": "2026-12-16",
+      "names": [
+        {
+          "en": "Victory Day",
+          "bn": "বিজয় দিবস"
+        }
+      ],
+      "scope": "national"
+    },
+    {
+      "date": "2026-12-25",
+      "names": [
+        {
+          "en": "Christmas Day",
+          "bn": "বড়দিন"
+        }
+      ],
+      "scope": "national"
+    }
+  ],
+  "sources": [
+    {
+      "label": "2026 government gazette",
+      "url": "https://www.dpp.gov.bd/upload_file/gazettes/59216_19984.pdf"
+    },
+    {
+      "label": "11–12 February election holidays",
+      "url": "https://www.bssnews.net/national-parlament-election-2026/353742"
+    },
+    {
+      "label": "18 March additional holiday",
+      "url": "https://mopa.gov.bd/pages/go-ultimates/আসন্ন-পবিত্র-ঈদ-উল-ফিতর-উপলক্ষ্যে-১৮-মার্চ-২০২৬-তারিখ-বুধবার-নির্বাহী-আদেশে-সরকারি-ছুটি-ঘোষণা-7rea6d-69ad3e37f681a7e2728823e8"
+    },
+    {
+      "label": "22 October holiday / 17 October working day",
+      "url": "https://www.bssnews.net/bangla/news-flash/347353"
+    },
+    {
+      "label": "7 November additional holiday",
+      "url": "https://mopa.gov.bd/pages/go-ultimates/6ac5e76d9594596dad446b72"
+    }
+  ],
+  "verifiedOn": "2026-10-08",
+  "workingDays": [
+    "2026-10-17"
+  ]
+}

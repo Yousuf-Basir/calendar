@@ -2,20 +2,19 @@ import { useLayoutEffect, useRef } from 'react'
 import {
   calendarMonth, calendarParts, canShiftMonth, dayToIso,
   monthCells, shiftMonth, weekdayIndex,
-  isoToDay,
 } from '../calendar/calendar.js'
-import { holidayPeriod } from '../calendar/holidays.js'
+import HolidayList from './HolidayList.jsx'
 import { formatGregorianRange, formatNumber, calendarLabels } from '../calendar/labels.js'
 import {
   holidayForDate, holidayName,
 } from '../data/bangladesh-holidays.js'
 
-function dateLabel(day, language, appLanguage) {
+export function dateLabel(day, language, appLanguage) {
   const parts = calendarParts(day, language)
   const labels = calendarLabels(language, appLanguage)
   const numberLanguage = appLanguage === 'bn' ? 'bn' : language
   const holiday = language === 'en' ? holidayForDate(dayToIso(day)) : undefined
-  return `${labels.weekdayNames[weekdayIndex(day)]}, ${formatNumber(parts.day, numberLanguage)} ${labels.months[parts.month]} ${formatNumber(parts.year, numberLanguage)}${holiday ? `, ${holidayName(holiday, appLanguage)}${holiday.scope === 'regional' ? ` (${labels.regional})` : ''}` : ''}`
+  return `${labels.weekdayNames[weekdayIndex(day)]}, ${formatNumber(parts.day, numberLanguage)} ${labels.months[parts.month]} ${formatNumber(parts.year, numberLanguage)}${holiday ? `, ${holidayName(holiday, appLanguage)}${holiday.status === 'projected' ? ` (${labels.projected})` : ''}${holiday.scope === 'regional' ? ` (${labels.regional})` : ''}` : ''}`
 }
 
 function MonthGrid({ month, language, today, active, appLanguage }) {
@@ -113,8 +112,6 @@ export default function Calendar({ language, appLanguage = 'en', viewedDate, tod
       behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
     })
   }
-  const { holidays: monthHolidays, workingDays, missingYears } = holidayPeriod(viewedDate, language)
-  const holidayMonthLabel = `${labels.months[month.month]} ${formatNumber(month.year, numberLanguage)}`
 
   return (
     <section className="calendar" aria-label={`${labels.months[month.month]} ${formatNumber(month.year, numberLanguage)}`}>
@@ -136,29 +133,7 @@ export default function Calendar({ language, appLanguage = 'en', viewedDate, tod
           <MonthGrid key={page.key} month={page} language={language} appLanguage={appLanguage} today={today} active={index === 1} />
         ))}
       </div>
-      {language === 'en' && <section className="holiday-list" aria-labelledby="holiday-heading">
-        <h3 id="holiday-heading">{labels.holidays}<small>{holidayMonthLabel}</small></h3>
-        {monthHolidays.length > 0 ? (
-          <ul>{monthHolidays.map((holiday) => {
-            const day = isoToDay(holiday.date)
-            const parts = calendarParts(day, language)
-            return (
-              <li key={holiday.date}>
-                <time dateTime={holiday.date}>
-                  <strong>{formatNumber(parts.day, numberLanguage, true)}</strong>
-                  <span>{labels.months[parts.month]} {formatNumber(parts.year, numberLanguage)}</span>
-                </time>
-                <div>{holidayName(holiday, appLanguage)}{holiday.scope === 'regional' && <small>{labels.regional}</small>}</div>
-              </li>
-            )
-          })}</ul>
-        ) : missingYears.length === 0 && <p className="calendar-note">{labels.none}</p>}
-        {missingYears.length > 0 && <p className="calendar-note">{labels.unavailable} {missingYears.map((year) => formatNumber(year, numberLanguage)).join(', ')}.</p>}
-        {workingDays.map((date) => {
-          const parts = calendarParts(isoToDay(date), language)
-          return <p key={date} className="calendar-note">{labels.working}: {formatNumber(parts.day, numberLanguage)} {labels.months[parts.month]} {formatNumber(parts.year, numberLanguage)}</p>
-        })}
-      </section>}
+      <HolidayList viewedDate={viewedDate} language={language} appLanguage={appLanguage} />
     </section>
   )
 }

@@ -1,141 +1,135 @@
-# Updating Bangladesh holiday data
+# Updating Bangladesh government holidays
 
-Maintenance guide for this app, written 8 October 2026. The next annual update is for 2027; use the same process for later years.
+The app bundles holiday data; it does **not** scrape government PDFs in the browser. Future projections are **not official**. The maintainer pipeline below downloads evidence and creates a review draft. Only a separate, explicitly attested apply step can add an official year to `src/data/confirmed-holidays.json`. Historical 2026 data is not rewritten by downloading or reviewing a gazette.
 
-## How updates work today
+## Requirements
 
-The app does **not** fetch holidays from the internet. It bundles verified records in `src/data/bangladesh-holidays.js` and includes them in its JavaScript build. The service worker caches that build for offline use. To add a year, download the official documents, update the records, test, rebuild, and publish the app. Users receive the new data when they open the updated app online; they can then use it offline.
+- Node/npm for the existing app; Python 3.10+ available as `python3` (Windows: use Python/WSL or invoke the script with your Python executable).
+- Text extraction: Poppler's `pdftotext` (recommended), or `python3 -m pip install pypdf` in your Python environment. Tests need only the Python standard library.
+- For scanned/legacy-font PDFs, install Poppler and Tesseract with Bengali **and** English language data. Debian/Ubuntu example:
 
-Keep one Gregorian date for each holiday. `calendarParts()` converts it to Bangladesh's Bengali calendar. Do not create separate holiday datasets for the two views.
-
-The holiday list uses the Gregorian month containing the browsed date in every view. Its heading identifies that month. The native calendar grid keeps its own month boundaries, so a listed holiday can belong to the following Bengali month. Grid markers appear only on the actual matching date.
-
-## 1. Find and download the official list
-
-Start with the Ministry of Public Administration's [Government holidays page](https://mopa.gov.bd/pages/public-holiday/). Check its [archived holiday notices](https://mopa.gov.bd/pages/public-holiday?archived=true&page=1&page_size=10) if necessary. The archived listing inspected for this guide identifies the 2026 annual notification as published on 9 November 2025; that is an example, not a promised publication date for future years.
-
-Search for the target year's notification, for example:
-
-- `site:mopa.gov.bd ২০২৭ খ্রিষ্টাব্দের ছুটির তালিকার প্রজ্ঞাপন`
-- `site:mopa.gov.bd ২০২৭ সরকারি ছুটি`
-- `site:dpp.gov.bd ২০২৭ ছুটির তালিকা`
-
-Open the notice and follow its actual attachment link. Government attachment filenames and URLs can change; do not obtain 2027's document by replacing “2026” in an old URL. The [Department of Printing and Publications](https://www.dpp.gov.bd/) is another place to check the gazette. The [2026 gazette used by this project](https://www.dpp.gov.bd/upload_file/gazettes/59216_19984.pdf) is a reference for document format, not next year's data.
-
-Save the PDF locally, preferably under `docs/holiday-sources/2027/`, with its notice URL, publication date, order/reference number, and the date you checked it. These files can remain repository documentation; they do not need to ship inside the app.
-
-If downloading through PowerShell, use the verified attachment URL from the notice:
-
-```powershell
-New-Item -ItemType Directory -Force -Path docs/holiday-sources/2027
-# Replace the placeholder with the actual PDF attachment URL.
-$holidayPdfUrl = 'PASTE_VERIFIED_ATTACHMENT_URL_HERE'
-Invoke-WebRequest -Uri $holidayPdfUrl -OutFile docs/holiday-sources/2027/annual-holidays.pdf
+```sh
+sudo apt-get install poppler-utils tesseract-ocr tesseract-ocr-ben tesseract-ocr-eng
 ```
 
-Do not mark the year as loaded until the complete annual list has been checked. This guide does not supply verified 2027 dates.
+No OCR output, extracted text or guessed religious date is automatically official.
 
-## 2. Check the document and later amendments
+## 1. End-of-year / next-year download
 
-Confirm that the document covers Bangladesh government offices for the intended year. School calendars, bank closures, embassy calendars, and West Bengal calendars have different scopes.
+For the next annual update, run from this repository:
 
-Read the general holidays and holidays declared by executive order. Also inspect the document's notes and regional provisions. For this app:
+```sh
+npm run holidays:update -- --year 2027
+```
 
-- Include nationwide general and executive-order holidays.
-- Include an explicitly regional holiday only with `scope: 'regional'` and a suitable regional label. The current UI's regional label means the three Chittagong Hill Tracts districts; adding a different region requires updating that model and label.
-- Exclude optional personal religious leave and school- or bank-only closures.
-- Do not add every Friday or Saturday as a government holiday. Fridays already have their own red column.
-- Expand multi-day holiday periods into one entry per Gregorian date.
-- Combine two holiday names that fall on one date into the same entry.
-- Record exceptional working days separately in `WORKING_DAYS`.
+The script examines MOPA's current holiday listing and at most three archive pages, selects a row whose title identifies the requested year's annual holiday list, opens the actual notice, and follows its actual PDF link. It does not change a previous year's filename or interpret an amendment as the annual list. Multiple matching notices/attachments require an explicit selection. Discovery is bounded and can miss a deeply archived notice; failure does **not** prove that the government has not published it.
 
-Recheck the Ministry's [orders](https://mopa.gov.bd/pages/go-ultimates) and holiday notices for later additions, cancellations, date changes, and replacement working days. Use the final published order when announcements differ. Annual religious holiday dates may later be amended following local moon sightings; read the notice's conditions rather than treating forecast dates as final.
+Primary starting points:
 
-An example of an amendment is the 2026 Durga Puja adjustment: 22 October became an additional holiday and 17 October became a working day. [Bangladesh Sangbad Sangstha's report of the notification](https://www.bssnews.net/others/432289) explains the change. Such one-off entries must not be copied automatically into the next year.
+- https://mopa.gov.bd/pages/public-holiday/
+- https://mopa.gov.bd/pages/public-holiday?archived=true&page=1&page_size=10
+- https://www.dpp.gov.bd/
 
-PDF extraction or OCR can help draft the records, but visually compare every date and name against the PDF. Bengali digits, table columns, date ranges, and footnotes are easy to misread.
+When the site changes or a notice is not discovered, visually find the requested year's annual notification and supply its actual URL:
 
-## 3. Update the holiday file without losing older years
+```sh
+npm run holidays:update -- --year 2027 --notice-url 'ACTUAL_HTTPS_GOVERNMENT_ANNUAL_NOTICE_URL'
+# Or supply the actual government-hosted gazette PDF:
+npm run holidays:update -- --year 2027 --pdf-url 'ACTUAL_HTTPS_GOVERNMENT_PDF_URL'
+# Multiple attachments: choose the real PDF linked by that notice:
+npm run holidays:update -- --year 2027 --notice-url 'ACTUAL_NOTICE_URL' --pdf-url 'ACTUAL_ATTACHMENT_URL'
+```
 
-Edit `src/data/bangladesh-holidays.js`.
+These uppercase placeholders are not runnable source URLs. Use the real government URLs, not an unofficial holiday/calendar website. Direct PDFs must be HTTPS `*.gov.bd`. MOPA currently also links files on its specific Oracle object-storage namespace: this is allowed **only with a government notice**, and the supplied storage URL must be one of that notice's actual PDF links. Arbitrary cloud storage is rejected. Redirects are checked, HTTP downgrade is rejected, downloads are capped at 25 MiB with a 25-second request deadline/socket timeout, and HTML masquerading as a PDF fails before review. PDF extraction is subprocess-isolated with time limits; OCR accepts at most 20 pages. Process external PDFs only on a maintained machine.
 
-The current implementation has a single `entries` array containing `MM-DD` strings, then prefixes every date with `2026-`. **Adding 2027 to `HOLIDAY_YEARS` alone is insufficient.** Changing that prefix to 2027 would also wrongly move all existing holidays into the new year.
+If text extraction reports `ocr-required` or `legacy-font-or-unreadable-text`, rerun with OCR:
 
-Retain the 2026 records and give each year its own verified entries. A minimal future implementation can replace the existing array-to-record mapping with this pattern:
+```sh
+npm run holidays:update -- --year 2027 --ocr
+# Combine --ocr with --notice-url / --pdf-url if discovery needed a fallback.
+```
 
-```js
-// Rename the current entries array to entries2026, preserving its contents.
-const entries2026 = [/* existing verified 2026 entries */]
-const entries2027 = [/* complete verified 2027 entries */]
+The command prints the exact review path under `scripts/holiday-sources/YEAR/TIMESTAMP-HASH/`. Each run gets a new archive; previous drafts are not overwritten. Use `--output-dir PATH` to keep evidence somewhere else. The default evidence directory is gitignored: retain/copy the reviewed archive in your durable maintenance records.
 
-const entriesByYear = {
-  2026: entries2026,
-  2027: entries2027,
+Files produced:
+
+- `annual.pdf`: actual downloaded bytes, not a generated PDF.
+- `metadata.json`: downloaded UTC timestamp, actual source URLs, byte count, SHA-256, extraction engine/status, requested year and source-year-match result.
+- `notice.txt`: annual notice heading captured from the government page (blank for direct-PDF mode).
+- `extracted.txt`: actual layout extraction or optional Bengali/English OCR.
+- `date-candidates.json`: ISO date hints with their original lines, **not** classified holidays. These reduce transcription where text is readable. They can include optional leave and notes and miss date ranges, broken columns or OCR misspellings; never bulk-promote them.
+- `review.json`: deliberately unconfirmed review template. No automatic `official` status, no projected dates, no silent empty-year publication.
+
+A successful download means evidence is ready, **not** that holidays are confirmed. Missing tools/scans are clearly flagged; install OCR or review the PDF visually. The real 2026 MOPA attachment was scanned, so ordinary text extraction yielded no usable list; Bengali OCR produced reviewable text but had table/date errors. This is why the parser fails closed rather than filling the official array.
+
+## 2. Review the complete list
+
+Open `annual.pdf` and compare every date/name to `extracted.txt`. Use `date-candidates.json` as a transcription aid, not a complete list. No generic parser can reliably recover Bangla tables, multi-line date ranges, optional-leave exclusions and regional footnotes. If OCR remains unusable, obtain an accessible government version or manually transcribe; do not change a projection's status to official.
+
+Populate `review.json`'s `holidays` array with complete ISO Gregorian dates, bilingual names and explicit scope. Example **shape only**, not a complete annual list:
+
+```json
+{
+  "date": "2027-02-21",
+  "names": [{ "en": "Holiday name checked against gazette", "bn": "গেজেট দেখে যাচাইকৃত নাম" }],
+  "scope": "national"
 }
-
-export const HOLIDAY_YEARS = Object.keys(entriesByYear).map(Number)
-export const BANGLADESH_HOLIDAYS = Object.entries(entriesByYear)
-  .flatMap(([year, entries]) => entries.map(([date, ids, scope = 'national']) => ({
-    date: `${year}-${date}`,
-    names: ids.map((id) => names[id]),
-    scope,
-  })))
-  .sort((a, b) => a.date.localeCompare(b.date))
 ```
 
-This is a structural example, not a complete replacement file. Replace the placeholders with real records and replace the original declarations rather than declaring duplicate exports. Add the 2027 key only after its annual list is complete; an empty year would make the UI incorrectly say there are no holidays.
+- Include nationwide general holidays and executive-order holidays; expand multi-day ranges into individual dates.
+- Merge multiple names on the same date into a single `names` array. Dates must be unique.
+- Use `regional` only for the app's existing Chittagong Hill Tracts scope; another regional definition needs frontend/schema work before applying it.
+- Exclude optional personal religious leave, school/bank-only calendars and ordinary weekly weekends.
+- Keep exceptional working days as full ISO strings in `workingDays`. Remove any holiday that an amendment explicitly cancels; a date cannot be both holiday and replacement working day.
+- Read later amendments at https://mopa.gov.bd/pages/go-ultimates and the holiday notices, including moon-sighting changes. Add their actual government URLs and descriptive year-specific labels to `sources`; retain the original annual government notice and any government-hosted PDF URLs. Oracle attachment URLs stay in archive metadata (the government notice, not the storage vendor, is the published source).
+- Keep the archived PDF, metadata and `archive.sha256` intact. Do not claim review of a PDF other than the one downloaded.
+- Set `verifiedOn` to the real review date (`YYYY-MM-DD`), `reviewedBy` to your name, and **only after complete review** set `completeAnnualList` to `true`. Leave `status: "draft"`; the apply command sets official status.
 
-Reuse the existing `names` keys where appropriate. An entry has the format:
+The target year must occur in the source notice heading or actual extracted PDF text. Labels/filenames alone are not evidence of the year. If direct PDF extraction cannot establish its year, supply the correct annual government notice and rerun (with OCR if needed), rather than editing the archive metadata to bypass the check.
 
-```js
-['MM-DD', ['holidayNameKey']]             // nationwide
-['MM-DD', ['firstKey', 'secondKey']]      // two names on one date
-['MM-DD', ['holidayNameKey'], 'regional'] // restricted scope
+## 3. Explicitly apply reviewed data
+
+Use the exact `review.json` path printed by the downloader, keeping it next to its archive files:
+
+```sh
+npm run holidays:apply -- --year 2027 --review 'scripts/holiday-sources/2027/ACTUAL_RUN_FOLDER/review.json' --attest-reviewed
 ```
 
-New names need English and Bangla translations.
+`--attest-reviewed` means: **I personally checked the complete annual list, scopes, bilingual names, date ranges, notes, optional-leave exclusions and known amendments.** This is not a flag for an unattended scheduled job.
 
-Keep `WORKING_DAYS` as full ISO dates, retaining historical entries and adding only next year's explicitly ordered exceptions. Update `HOLIDAYS_VERIFIED_ON` to your actual review date. Add the annual PDF and amendment URLs to `HOLIDAY_SOURCES`, clearly identifying the year. These sources remain hidden in the UI.
+Apply validates the requested/archive/review year, source-year match, retained government sources, archived PDF hash, nonfuture review date, named reviewer, `completeAnnualList: true`, at least 10 distinct holiday dates spanning at least six months, real ISO dates in the target year, nonempty English/Bangla names, allowed scopes, and unique/nonconflicting working days. The count/month checks are sanity gates, **not proof of completeness**: completeness still requires a human reading every relevant section. Invalid, partial, empty, malformed or tampered reviews fail without changing confirmed data. Duplicate JSON keys are rejected.
 
-Keep dates unique across `BANGLADESH_HOLIDAYS`: `holidayForDate()` builds a map with one record per ISO date. Duplicate rows would cause the map to keep only one while the list renders both.
+Apply writes only the selected year into the confirmed-year mapping, preserving all other years. A same-directory atomic replacement and exclusive updater lock prevent partial writes/concurrent updater loss. A stale `.lock` after a killed process must be inspected and removed only when no updater is running. Existing malformed confirmed data is never discarded to recover. Apply reads back the exact saved year before reporting success. Do not hand-edit the same destination while applying.
 
-## 4. Validate the update
+For amendments, prepare/review the **entire year's list**, retain the annual evidence, add the amendment sources, and reapply that year. Do not apply a short amendment-only list. Download/review does not modify the base 2026 records; do not use a smoke test as an instruction to replace them.
 
-From the project folder:
+## 4. Test, rebuild and release
 
-```powershell
+```sh
+npm run test:holidays-updater
 npm test
 npm run build
 npm run preview -- --host 127.0.0.1
 ```
 
-Add assertions to `src/calendar/calendar.test.js` using several dates taken directly from the new documents: a fixed national holiday, a religious holiday, an amendment if available, a regional entry if present, and any replacement working day. Check that 2026 records remain available and 2027 appears in `HOLIDAY_YEARS`. Check unique valid ISO dates, valid name keys, and chronological records.
+The updater tests are explicitly synthetic-fixture unit tests: they exercise discovery filtering, safe URLs/PDF signatures, archives/hash, date hints, OCR failure flags, attestation, validation, atomic/preserved older-year behavior, and CLI help without claiming network verification. A live download smoke check is separate:
 
-In the production preview:
+```sh
+npm run holidays:update -- --year 2026 --output-dir /path/to/scratch/evidence
+# Optional scanned-PDF smoke:
+npm run holidays:update -- --year 2026 --ocr --output-dir /path/to/scratch/evidence-ocr
+```
 
-1. Browse to months with verified next-year holidays.
-2. Switch between English and Bangla. The same Gregorian-month holidays should remain listed, with converted dates and correct language.
-3. Confirm that red dots match actual civil dates inside each native grid. A holiday outside the native month should remain in the list without being assigned to an unrelated cell.
-4. Check Bengali New Year, February/leap-year conversions, year boundaries, Friday columns, and month swiping.
-5. Visit an unloaded year and confirm the missing-data message still appears.
-6. Open the production app online in Chrome, allow its service worker to install, then reload offline and switch both views. Verify holidays, fonts, and month navigation still work.
+Add calendar integration assertions using actual reviewed source dates. Check both languages/views, holiday dots/list dates, regional labels, working-day exceptions, year boundaries, retained 2026 records, and removal of the projection warning **only for the reviewed official year**. Unconfirmed future years must stay visibly projected. Do not confuse the displayed Gregorian-month holiday list with the native Bengali grid's different month boundaries.
 
-Vite development mode is not the release offline check. Use the production build and preview.
+Confirmed JSON is bundled into the build. Neither downloading nor applying updates an already deployed/offline app. Before release, increment `CACHE_NAME` in `public/sw.js` to a unique release value (also for amendments), build again, and publish the **whole** `dist/` atomically. `vite.config.js` injects hashed build assets into the service worker. Revalidate `sw.js` and `index.html` at the host/CDN; hashed assets may be long-lived. Existing offline users keep the old data until an online visit installs the new worker and a reload activates the new app. Test that upgrade path and offline navigation in production preview, not just Vite dev mode. Keep a preceding release for rollback.
 
-## 5. Publish and refresh offline clients
+## Recorded live smoke — 15 October 2026
 
-Before building the release, give `CACHE_NAME` in `public/sw.js` a new unique version, such as `calendar-shell-2027-r1`. Use a new version for subsequent amendments too. `vite.config.js` injects the newly hashed JavaScript, CSS, and local font files into the built worker's asset list.
+Real network execution, not unit fixtures:
 
-Publish the whole `dist/` directory together, including `sw.js`, `index.html`, and all assets. Do not upload only the edited source file. Configure hosting so `sw.js` and `index.html` are revalidated rather than held in a long-lived HTTP/CDN cache; hashed assets can have long cache lifetimes.
-
-Users who remain offline keep their previously installed data. They need an online visit for the browser to discover and install the new worker, then a reload to show the new application data. Verify that sequence on an existing installation as well as a fresh browser profile. Keep the preceding release available for rollback.
-
-After publishing, note the dataset year, review date, release version, and supporting orders in a short maintenance log. Recheck amendments during the year, especially around religious holidays; annual publication is not the last possible update.
-
-## Optional future automatic fetching
-
-For this small offline app, the manual verified-data release above is the recommended starting point. If automatic updates are later needed, add a separate maintainer pipeline that downloads official documents and produces reviewed, versioned JSON. Serve that JSON from the app's own origin.
-
-The browser can then fetch it when online, validate its schema/year/unique dates, and save a successfully validated complete dataset in IndexedDB. It must retain the last good data and bundled fallback when a request fails, never replace records with an empty or partial response, and avoid falsely marking a year as covered. The UI would also need to read this saved dataset; simply adding a fetch call does not change the current static imports.
-
-Official PDF pages are not a guaranteed stable JSON API, and scraping them directly from the browser creates parsing, cross-origin, and offline problems. This optional pipeline is a future feature; it has not been implemented by this documentation update.
+- `--year 2026` discovered the annual MOPA notice ending `2df487-694139b2a31054345f0e6346` and followed its linked Oracle `office-mopa/2024/12/209c6283d9234a0fa8f1f30b90068b57.pdf` (the storage path's year is not the holiday year).
+- Actual PDF: **392966 bytes**, SHA-256 `9dba0a97eb9790eefa695b92ac3ecd04630037c58ffb69aa935bc958f421de93`.
+- `pdftotext -layout` reported `ocr-required`; rerunning with `--ocr` yielded 6628 text characters and 44 untrusted date hints, including optional leave and imperfect table text. Neither run applied anything.
+- `--year 2027` exited 1 with `No 2027 annual notice discovered`; this bounded result is not a declaration that no 2027 gazette exists.
+- No 2026 official data was overwritten; no new year was confirmed or deployed by these smoke checks.

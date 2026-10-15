@@ -1,0 +1,1796 @@
+{
+  "2027": {
+    "year": 2027,
+    "status": "projected",
+    "method": "civil-islamic+dhaka-tithi-v1",
+    "holidays": [
+      {
+        "date": "2027-01-24",
+        "ids": [
+          "barat"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2027-02-21",
+        "ids": [
+          "language"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2027-03-05",
+        "ids": [
+          "jumuat"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2027-03-06",
+        "ids": [
+          "qadr"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2027-03-10",
+        "ids": [
+          "fitr"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2027-03-26",
+        "ids": [
+          "independence"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2027-04-13",
+        "ids": [
+          "chaitra"
+        ],
+        "scope": "regional",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2027-04-14",
+        "ids": [
+          "newYear"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2027-05-01",
+        "ids": [
+          "may"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2027-05-17",
+        "ids": [
+          "adha"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2027-05-20",
+        "ids": [
+          "buddha"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "astronomical-tithi"
+      },
+      {
+        "date": "2027-06-15",
+        "ids": [
+          "ashura"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2027-08-05",
+        "ids": [
+          "uprising"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2027-08-15",
+        "ids": [
+          "milad"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2027-08-24",
+        "ids": [
+          "janmashtami"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "astronomical-tithi"
+      },
+      {
+        "date": "2027-10-09",
+        "ids": [
+          "navami"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "astronomical-tithi"
+      },
+      {
+        "date": "2027-10-10",
+        "ids": [
+          "dashami"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "astronomical-tithi"
+      },
+      {
+        "date": "2027-12-16",
+        "ids": [
+          "victory"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2027-12-25",
+        "ids": [
+          "christmas"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      }
+    ],
+    "workingDays": []
+  },
+  "2028": {
+    "year": 2028,
+    "status": "projected",
+    "method": "civil-islamic+dhaka-tithi-v1",
+    "holidays": [
+      {
+        "date": "2028-01-13",
+        "ids": [
+          "barat"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2028-02-21",
+        "ids": [
+          "language"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2028-02-23",
+        "ids": [
+          "qadr"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2028-02-25",
+        "ids": [
+          "jumuat"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2028-02-27",
+        "ids": [
+          "fitr"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2028-03-26",
+        "ids": [
+          "independence"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2028-04-13",
+        "ids": [
+          "chaitra"
+        ],
+        "scope": "regional",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2028-04-14",
+        "ids": [
+          "newYear"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2028-05-01",
+        "ids": [
+          "may"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2028-05-05",
+        "ids": [
+          "adha"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2028-05-08",
+        "ids": [
+          "buddha"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "astronomical-tithi"
+      },
+      {
+        "date": "2028-06-03",
+        "ids": [
+          "ashura"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2028-08-03",
+        "ids": [
+          "milad"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2028-08-05",
+        "ids": [
+          "uprising"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2028-08-13",
+        "ids": [
+          "janmashtami"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "astronomical-tithi"
+      },
+      {
+        "date": "2028-09-27",
+        "ids": [
+          "navami"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "astronomical-tithi"
+      },
+      {
+        "date": "2028-09-28",
+        "ids": [
+          "dashami"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "astronomical-tithi"
+      },
+      {
+        "date": "2028-12-16",
+        "ids": [
+          "victory"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2028-12-25",
+        "ids": [
+          "christmas"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      }
+    ],
+    "workingDays": []
+  },
+  "2029": {
+    "year": 2029,
+    "status": "projected",
+    "method": "civil-islamic+dhaka-tithi-v1",
+    "holidays": [
+      {
+        "date": "2029-01-01",
+        "ids": [
+          "barat"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2029-02-09",
+        "ids": [
+          "jumuat"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2029-02-11",
+        "ids": [
+          "qadr"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2029-02-15",
+        "ids": [
+          "fitr"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2029-02-21",
+        "ids": [
+          "language"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2029-03-26",
+        "ids": [
+          "independence"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2029-04-13",
+        "ids": [
+          "chaitra"
+        ],
+        "scope": "regional",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2029-04-14",
+        "ids": [
+          "newYear"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2029-04-24",
+        "ids": [
+          "adha"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2029-05-01",
+        "ids": [
+          "may"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2029-05-24",
+        "ids": [
+          "ashura"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2029-05-27",
+        "ids": [
+          "buddha"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "astronomical-tithi"
+      },
+      {
+        "date": "2029-07-24",
+        "ids": [
+          "milad"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2029-08-05",
+        "ids": [
+          "uprising"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2029-08-31",
+        "ids": [
+          "janmashtami"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "astronomical-tithi"
+      },
+      {
+        "date": "2029-10-15",
+        "ids": [
+          "navami"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "astronomical-tithi"
+      },
+      {
+        "date": "2029-10-16",
+        "ids": [
+          "dashami"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "astronomical-tithi"
+      },
+      {
+        "date": "2029-12-16",
+        "ids": [
+          "victory"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2029-12-22",
+        "ids": [
+          "barat"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2029-12-25",
+        "ids": [
+          "christmas"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      }
+    ],
+    "workingDays": []
+  },
+  "2030": {
+    "year": 2030,
+    "status": "projected",
+    "method": "civil-islamic+dhaka-tithi-v1",
+    "holidays": [
+      {
+        "date": "2030-02-01",
+        "ids": [
+          "qadr",
+          "jumuat"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2030-02-05",
+        "ids": [
+          "fitr"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2030-02-21",
+        "ids": [
+          "language"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2030-03-26",
+        "ids": [
+          "independence"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2030-04-13",
+        "ids": [
+          "chaitra"
+        ],
+        "scope": "regional",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2030-04-14",
+        "ids": [
+          "adha",
+          "newYear"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic+fixed-policy"
+      },
+      {
+        "date": "2030-05-01",
+        "ids": [
+          "may"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2030-05-13",
+        "ids": [
+          "ashura"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2030-05-17",
+        "ids": [
+          "buddha"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "astronomical-tithi"
+      },
+      {
+        "date": "2030-07-13",
+        "ids": [
+          "milad"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2030-08-05",
+        "ids": [
+          "uprising"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2030-08-20",
+        "ids": [
+          "janmashtami"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "astronomical-tithi"
+      },
+      {
+        "date": "2030-10-05",
+        "ids": [
+          "navami"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "astronomical-tithi"
+      },
+      {
+        "date": "2030-10-06",
+        "ids": [
+          "dashami"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "astronomical-tithi"
+      },
+      {
+        "date": "2030-12-11",
+        "ids": [
+          "barat"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2030-12-16",
+        "ids": [
+          "victory"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2030-12-25",
+        "ids": [
+          "christmas"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      }
+    ],
+    "workingDays": []
+  },
+  "2031": {
+    "year": 2031,
+    "status": "projected",
+    "method": "civil-islamic+dhaka-tithi-v1",
+    "holidays": [
+      {
+        "date": "2031-01-21",
+        "ids": [
+          "qadr"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2031-01-24",
+        "ids": [
+          "jumuat"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2031-01-25",
+        "ids": [
+          "fitr"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2031-02-21",
+        "ids": [
+          "language"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2031-03-26",
+        "ids": [
+          "independence"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2031-04-03",
+        "ids": [
+          "adha"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2031-04-13",
+        "ids": [
+          "chaitra"
+        ],
+        "scope": "regional",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2031-04-14",
+        "ids": [
+          "newYear"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2031-05-01",
+        "ids": [
+          "may"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2031-05-02",
+        "ids": [
+          "ashura"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2031-05-07",
+        "ids": [
+          "buddha"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "astronomical-tithi"
+      },
+      {
+        "date": "2031-07-02",
+        "ids": [
+          "milad"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2031-08-05",
+        "ids": [
+          "uprising"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2031-08-09",
+        "ids": [
+          "janmashtami"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "astronomical-tithi"
+      },
+      {
+        "date": "2031-10-24",
+        "ids": [
+          "navami"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "astronomical-tithi"
+      },
+      {
+        "date": "2031-10-25",
+        "ids": [
+          "dashami"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "astronomical-tithi"
+      },
+      {
+        "date": "2031-11-30",
+        "ids": [
+          "barat"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2031-12-16",
+        "ids": [
+          "victory"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2031-12-25",
+        "ids": [
+          "christmas"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      }
+    ],
+    "workingDays": []
+  },
+  "2032": {
+    "year": 2032,
+    "status": "projected",
+    "method": "civil-islamic+dhaka-tithi-v1",
+    "holidays": [
+      {
+        "date": "2032-01-09",
+        "ids": [
+          "jumuat"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2032-01-10",
+        "ids": [
+          "qadr"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2032-01-14",
+        "ids": [
+          "fitr"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2032-02-21",
+        "ids": [
+          "language"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2032-03-22",
+        "ids": [
+          "adha"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2032-03-26",
+        "ids": [
+          "independence"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2032-04-13",
+        "ids": [
+          "chaitra"
+        ],
+        "scope": "regional",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2032-04-14",
+        "ids": [
+          "newYear"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2032-04-21",
+        "ids": [
+          "ashura"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2032-05-01",
+        "ids": [
+          "may"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2032-05-25",
+        "ids": [
+          "buddha"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "astronomical-tithi"
+      },
+      {
+        "date": "2032-06-21",
+        "ids": [
+          "milad"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2032-08-05",
+        "ids": [
+          "uprising"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2032-08-27",
+        "ids": [
+          "janmashtami"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "astronomical-tithi"
+      },
+      {
+        "date": "2032-10-13",
+        "ids": [
+          "navami"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "astronomical-tithi"
+      },
+      {
+        "date": "2032-10-14",
+        "ids": [
+          "dashami"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "astronomical-tithi"
+      },
+      {
+        "date": "2032-11-19",
+        "ids": [
+          "barat"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2032-12-16",
+        "ids": [
+          "victory"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2032-12-25",
+        "ids": [
+          "christmas"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2032-12-30",
+        "ids": [
+          "qadr"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2032-12-31",
+        "ids": [
+          "jumuat"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      }
+    ],
+    "workingDays": []
+  },
+  "2033": {
+    "year": 2033,
+    "status": "projected",
+    "method": "civil-islamic+dhaka-tithi-v1",
+    "holidays": [
+      {
+        "date": "2033-01-03",
+        "ids": [
+          "fitr"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2033-02-21",
+        "ids": [
+          "language"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2033-03-12",
+        "ids": [
+          "adha"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2033-03-26",
+        "ids": [
+          "independence"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2033-04-10",
+        "ids": [
+          "ashura"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2033-04-13",
+        "ids": [
+          "chaitra"
+        ],
+        "scope": "regional",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2033-04-14",
+        "ids": [
+          "newYear"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2033-05-01",
+        "ids": [
+          "may"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2033-05-14",
+        "ids": [
+          "buddha"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "astronomical-tithi"
+      },
+      {
+        "date": "2033-06-10",
+        "ids": [
+          "milad"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2033-08-05",
+        "ids": [
+          "uprising"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2033-08-17",
+        "ids": [
+          "janmashtami"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "astronomical-tithi"
+      },
+      {
+        "date": "2033-10-03",
+        "ids": [
+          "navami"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "astronomical-tithi"
+      },
+      {
+        "date": "2033-10-04",
+        "ids": [
+          "dashami"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "astronomical-tithi"
+      },
+      {
+        "date": "2033-11-08",
+        "ids": [
+          "barat"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2033-12-16",
+        "ids": [
+          "jumuat",
+          "victory"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic+fixed-policy"
+      },
+      {
+        "date": "2033-12-19",
+        "ids": [
+          "qadr"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2033-12-23",
+        "ids": [
+          "fitr"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2033-12-25",
+        "ids": [
+          "christmas"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      }
+    ],
+    "workingDays": []
+  },
+  "2034": {
+    "year": 2034,
+    "status": "projected",
+    "method": "civil-islamic+dhaka-tithi-v1",
+    "holidays": [
+      {
+        "date": "2034-02-21",
+        "ids": [
+          "language"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2034-03-01",
+        "ids": [
+          "adha"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2034-03-26",
+        "ids": [
+          "independence"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2034-03-30",
+        "ids": [
+          "ashura"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2034-04-13",
+        "ids": [
+          "chaitra"
+        ],
+        "scope": "regional",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2034-04-14",
+        "ids": [
+          "newYear"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2034-05-01",
+        "ids": [
+          "may"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2034-05-03",
+        "ids": [
+          "buddha"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "astronomical-tithi"
+      },
+      {
+        "date": "2034-05-30",
+        "ids": [
+          "milad"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2034-08-05",
+        "ids": [
+          "uprising"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2034-09-05",
+        "ids": [
+          "janmashtami"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "astronomical-tithi"
+      },
+      {
+        "date": "2034-10-22",
+        "ids": [
+          "navami"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "astronomical-tithi"
+      },
+      {
+        "date": "2034-10-23",
+        "ids": [
+          "dashami"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "astronomical-tithi"
+      },
+      {
+        "date": "2034-10-28",
+        "ids": [
+          "barat"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2034-12-08",
+        "ids": [
+          "qadr",
+          "jumuat"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2034-12-12",
+        "ids": [
+          "fitr"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2034-12-16",
+        "ids": [
+          "victory"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2034-12-25",
+        "ids": [
+          "christmas"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      }
+    ],
+    "workingDays": []
+  },
+  "2035": {
+    "year": 2035,
+    "status": "projected",
+    "method": "civil-islamic+dhaka-tithi-v1",
+    "holidays": [
+      {
+        "date": "2035-02-18",
+        "ids": [
+          "adha"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2035-02-21",
+        "ids": [
+          "language"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2035-03-20",
+        "ids": [
+          "ashura"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2035-03-26",
+        "ids": [
+          "independence"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2035-04-13",
+        "ids": [
+          "chaitra"
+        ],
+        "scope": "regional",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2035-04-14",
+        "ids": [
+          "newYear"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2035-05-01",
+        "ids": [
+          "may"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2035-05-20",
+        "ids": [
+          "milad"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2035-05-22",
+        "ids": [
+          "buddha"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "astronomical-tithi"
+      },
+      {
+        "date": "2035-08-05",
+        "ids": [
+          "uprising"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2035-08-26",
+        "ids": [
+          "janmashtami"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "astronomical-tithi"
+      },
+      {
+        "date": "2035-10-10",
+        "ids": [
+          "navami"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "astronomical-tithi"
+      },
+      {
+        "date": "2035-10-12",
+        "ids": [
+          "dashami"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "astronomical-tithi"
+      },
+      {
+        "date": "2035-10-18",
+        "ids": [
+          "barat"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2035-11-28",
+        "ids": [
+          "qadr"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2035-11-30",
+        "ids": [
+          "jumuat"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2035-12-02",
+        "ids": [
+          "fitr"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2035-12-16",
+        "ids": [
+          "victory"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2035-12-25",
+        "ids": [
+          "christmas"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      }
+    ],
+    "workingDays": []
+  },
+  "2036": {
+    "year": 2036,
+    "status": "projected",
+    "method": "civil-islamic+dhaka-tithi-v1",
+    "holidays": [
+      {
+        "date": "2036-02-08",
+        "ids": [
+          "adha"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2036-02-21",
+        "ids": [
+          "language"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2036-03-08",
+        "ids": [
+          "ashura"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2036-03-26",
+        "ids": [
+          "independence"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2036-04-13",
+        "ids": [
+          "chaitra"
+        ],
+        "scope": "regional",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2036-04-14",
+        "ids": [
+          "newYear"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2036-05-01",
+        "ids": [
+          "may"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2036-05-08",
+        "ids": [
+          "milad"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2036-05-10",
+        "ids": [
+          "buddha"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "astronomical-tithi"
+      },
+      {
+        "date": "2036-08-05",
+        "ids": [
+          "uprising"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2036-08-14",
+        "ids": [
+          "janmashtami"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "astronomical-tithi"
+      },
+      {
+        "date": "2036-09-28",
+        "ids": [
+          "navami"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "astronomical-tithi"
+      },
+      {
+        "date": "2036-09-29",
+        "ids": [
+          "dashami"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "astronomical-tithi"
+      },
+      {
+        "date": "2036-10-06",
+        "ids": [
+          "barat"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2036-11-14",
+        "ids": [
+          "jumuat"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2036-11-16",
+        "ids": [
+          "qadr"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2036-11-20",
+        "ids": [
+          "fitr"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "tabular-islamic"
+      },
+      {
+        "date": "2036-12-16",
+        "ids": [
+          "victory"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      },
+      {
+        "date": "2036-12-25",
+        "ids": [
+          "christmas"
+        ],
+        "scope": "national",
+        "status": "projected",
+        "basis": "fixed-policy"
+      }
+    ],
+    "workingDays": []
+  }
+}
