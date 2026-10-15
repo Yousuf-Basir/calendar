@@ -97,7 +97,11 @@ export function buildHolidayData(overrides = confirmed) {
     },
     ...Object.fromEntries(Object.entries(projections).map(([year, projection]) => [year, {
       ...projection, verifiedOn: null,
-      holidays: projection.holidays.map(({ ids, ...holiday }) => ({ ...holiday, names: ids.map(id => ({ ...names[id] })) })),
+      holidays: projection.holidays.map(({ ids, ...holiday }) => ({
+        ...holiday,
+        names: ids.map(id => ({ ...(id === 'fitr' ? { en: 'Eid-ul-Fitr', bn: 'ঈদুল ফিতর' }
+          : id === 'adha' ? { en: 'Eid-ul-Adha', bn: 'ঈদুল আজহা' } : names[id]) })),
+      })),
     }])),
   }
   if (overrides && typeof overrides === 'object' && !Array.isArray(overrides)) {

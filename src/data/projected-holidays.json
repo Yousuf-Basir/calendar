@@ -10,9 +10,9 @@
         "url": "https://calendarific.com/holidays/2027/BD"
       }
     ],
-    "sourceSha256": "8d9b112b3d182489fe63caa0ec835c5e61492433ebc02b581258c0ef85964419",
+    "sourceSha256": "1f6396b01adc94e1204164dec3ed590f00e51a44613486a7356736178117ef66",
     "sourceRowCount": 72,
-    "selection": "Explicit government-holiday category allowlist; optional, bank-only and observance rows excluded. Dates and extra closure days are publisher forecasts, not government confirmation.",
+    "selection": "Core nationwide holiday categories only. Eid Holiday extension rows are excluded; consecutive same-name Eid runs contribute only their first published date. Optional, bank-only and observance rows are excluded. These remain publisher forecasts, not government-confirmed mandatory leave.",
     "publishedRows": [
       {
         "date": "2027-01-24",
@@ -39,38 +39,8 @@
         "scope": "national"
       },
       {
-        "date": "2027-03-08",
-        "name": "Eid ul-Fitr Holiday (Provisional)",
-        "id": "fitr",
-        "scope": "national"
-      },
-      {
-        "date": "2027-03-09",
-        "name": "Eid ul-Fitr Holiday (Provisional)",
-        "id": "fitr",
-        "scope": "national"
-      },
-      {
         "date": "2027-03-10",
         "name": "Eid ul-Fitr (Provisional)",
-        "id": "fitr",
-        "scope": "national"
-      },
-      {
-        "date": "2027-03-11",
-        "name": "Eid ul-Fitr Holiday (Provisional)",
-        "id": "fitr",
-        "scope": "national"
-      },
-      {
-        "date": "2027-03-12",
-        "name": "Eid ul-Fitr Holiday (Provisional)",
-        "id": "fitr",
-        "scope": "national"
-      },
-      {
-        "date": "2027-03-13",
-        "name": "Eid ul-Fitr Holiday (Provisional)",
         "id": "fitr",
         "scope": "national"
       },
@@ -93,38 +63,8 @@
         "scope": "national"
       },
       {
-        "date": "2027-05-14",
-        "name": "Eid al-Adha Holiday (Provisional)",
-        "id": "adha",
-        "scope": "national"
-      },
-      {
-        "date": "2027-05-15",
-        "name": "Eid al-Adha Holiday (Provisional)",
-        "id": "adha",
-        "scope": "national"
-      },
-      {
         "date": "2027-05-16",
         "name": "Eid al-Adha (Provisional)",
-        "id": "adha",
-        "scope": "national"
-      },
-      {
-        "date": "2027-05-17",
-        "name": "Eid al-Adha Holiday (Provisional)",
-        "id": "adha",
-        "scope": "national"
-      },
-      {
-        "date": "2027-05-18",
-        "name": "Eid al-Adha Holiday (Provisional)",
-        "id": "adha",
-        "scope": "national"
-      },
-      {
-        "date": "2027-05-19",
-        "name": "Eid al-Adha Holiday (Provisional)",
         "id": "adha",
         "scope": "national"
       },
@@ -132,12 +72,6 @@
         "date": "2027-05-20",
         "name": "Buddha Purnima/Vesak",
         "id": "buddha",
-        "scope": "national"
-      },
-      {
-        "date": "2027-05-20",
-        "name": "Eid al-Adha Holiday (Provisional)",
-        "id": "adha",
         "scope": "national"
       },
       {
@@ -177,6 +111,12 @@
         "scope": "national"
       },
       {
+        "date": "2027-11-07",
+        "name": "National Revolution and Solidarity Day",
+        "id": "solidarity",
+        "scope": "national"
+      },
+      {
         "date": "2027-12-16",
         "name": "Victory Day",
         "id": "victory",
@@ -186,12 +126,6 @@
         "date": "2027-12-25",
         "name": "Christmas Day",
         "id": "christmas",
-        "scope": "national"
-      },
-      {
-        "date": "2027-11-07",
-        "name": "National Revolution and Solidarity Day",
-        "id": "solidarity",
         "scope": "national"
       }
     ],
@@ -241,28 +175,6 @@
         ]
       },
       {
-        "date": "2027-03-08",
-        "ids": [
-          "fitr"
-        ],
-        "scope": "national",
-        "status": "projected",
-        "publishedNames": [
-          "Eid ul-Fitr Holiday (Provisional)"
-        ]
-      },
-      {
-        "date": "2027-03-09",
-        "ids": [
-          "fitr"
-        ],
-        "scope": "national",
-        "status": "projected",
-        "publishedNames": [
-          "Eid ul-Fitr Holiday (Provisional)"
-        ]
-      },
-      {
         "date": "2027-03-10",
         "ids": [
           "fitr"
@@ -271,39 +183,6 @@
         "status": "projected",
         "publishedNames": [
           "Eid ul-Fitr (Provisional)"
-        ]
-      },
-      {
-        "date": "2027-03-11",
-        "ids": [
-          "fitr"
-        ],
-        "scope": "national",
-        "status": "projected",
-        "publishedNames": [
-          "Eid ul-Fitr Holiday (Provisional)"
-        ]
-      },
-      {
-        "date": "2027-03-12",
-        "ids": [
-          "fitr"
-        ],
-        "scope": "national",
-        "status": "projected",
-        "publishedNames": [
-          "Eid ul-Fitr Holiday (Provisional)"
-        ]
-      },
-      {
-        "date": "2027-03-13",
-        "ids": [
-          "fitr"
-        ],
-        "scope": "national",
-        "status": "projected",
-        "publishedNames": [
-          "Eid ul-Fitr Holiday (Provisional)"
         ]
       },
       {
@@ -340,28 +219,6 @@
         ]
       },
       {
-        "date": "2027-05-14",
-        "ids": [
-          "adha"
-        ],
-        "scope": "national",
-        "status": "projected",
-        "publishedNames": [
-          "Eid al-Adha Holiday (Provisional)"
-        ]
-      },
-      {
-        "date": "2027-05-15",
-        "ids": [
-          "adha"
-        ],
-        "scope": "national",
-        "status": "projected",
-        "publishedNames": [
-          "Eid al-Adha Holiday (Provisional)"
-        ]
-      },
-      {
         "date": "2027-05-16",
         "ids": [
           "adha"
@@ -373,49 +230,14 @@
         ]
       },
       {
-        "date": "2027-05-17",
-        "ids": [
-          "adha"
-        ],
-        "scope": "national",
-        "status": "projected",
-        "publishedNames": [
-          "Eid al-Adha Holiday (Provisional)"
-        ]
-      },
-      {
-        "date": "2027-05-18",
-        "ids": [
-          "adha"
-        ],
-        "scope": "national",
-        "status": "projected",
-        "publishedNames": [
-          "Eid al-Adha Holiday (Provisional)"
-        ]
-      },
-      {
-        "date": "2027-05-19",
-        "ids": [
-          "adha"
-        ],
-        "scope": "national",
-        "status": "projected",
-        "publishedNames": [
-          "Eid al-Adha Holiday (Provisional)"
-        ]
-      },
-      {
         "date": "2027-05-20",
         "ids": [
-          "buddha",
-          "adha"
+          "buddha"
         ],
         "scope": "national",
         "status": "projected",
         "publishedNames": [
-          "Buddha Purnima/Vesak",
-          "Eid al-Adha Holiday (Provisional)"
+          "Buddha Purnima/Vesak"
         ]
       },
       {
@@ -531,9 +353,9 @@
         "url": "https://calendarific.com/holidays/2028/BD"
       }
     ],
-    "sourceSha256": "bad60be7797dd55719b3e66dd52aca2e42b1716f479c7a24861cf52ebdd487cb",
+    "sourceSha256": "917a07801c0217b50d592beac7871af0358b2aebc64c14740467ca486f3cf120",
     "sourceRowCount": 72,
-    "selection": "Explicit government-holiday category allowlist; optional, bank-only and observance rows excluded. Dates and extra closure days are publisher forecasts, not government confirmation.",
+    "selection": "Core nationwide holiday categories only. Eid Holiday extension rows are excluded; consecutive same-name Eid runs contribute only their first published date. Optional, bank-only and observance rows are excluded. These remain publisher forecasts, not government-confirmed mandatory leave.",
     "publishedRows": [
       {
         "date": "2028-01-13",
@@ -560,38 +382,8 @@
         "scope": "national"
       },
       {
-        "date": "2028-02-25",
-        "name": "Eid ul-Fitr Holiday (Provisional)",
-        "id": "fitr",
-        "scope": "national"
-      },
-      {
-        "date": "2028-02-26",
-        "name": "Eid ul-Fitr Holiday (Provisional)",
-        "id": "fitr",
-        "scope": "national"
-      },
-      {
         "date": "2028-02-27",
         "name": "Eid ul-Fitr (Provisional)",
-        "id": "fitr",
-        "scope": "national"
-      },
-      {
-        "date": "2028-02-28",
-        "name": "Eid ul-Fitr Holiday (Provisional)",
-        "id": "fitr",
-        "scope": "national"
-      },
-      {
-        "date": "2028-02-29",
-        "name": "Eid ul-Fitr Holiday (Provisional)",
-        "id": "fitr",
-        "scope": "national"
-      },
-      {
-        "date": "2028-03-01",
-        "name": "Eid ul-Fitr Holiday (Provisional)",
         "id": "fitr",
         "scope": "national"
       },
@@ -614,38 +406,8 @@
         "scope": "national"
       },
       {
-        "date": "2028-05-02",
-        "name": "Eid al-Adha Holiday (Provisional)",
-        "id": "adha",
-        "scope": "national"
-      },
-      {
-        "date": "2028-05-03",
-        "name": "Eid al-Adha Holiday (Provisional)",
-        "id": "adha",
-        "scope": "national"
-      },
-      {
         "date": "2028-05-04",
         "name": "Eid al-Adha (Provisional)",
-        "id": "adha",
-        "scope": "national"
-      },
-      {
-        "date": "2028-05-05",
-        "name": "Eid al-Adha Holiday (Provisional)",
-        "id": "adha",
-        "scope": "national"
-      },
-      {
-        "date": "2028-05-06",
-        "name": "Eid al-Adha Holiday (Provisional)",
-        "id": "adha",
-        "scope": "national"
-      },
-      {
-        "date": "2028-05-07",
-        "name": "Eid al-Adha Holiday (Provisional)",
         "id": "adha",
         "scope": "national"
       },
@@ -653,12 +415,6 @@
         "date": "2028-05-08",
         "name": "Buddha Purnima/Vesak",
         "id": "buddha",
-        "scope": "national"
-      },
-      {
-        "date": "2028-05-08",
-        "name": "Eid al-Adha Holiday (Provisional)",
-        "id": "adha",
         "scope": "national"
       },
       {
@@ -698,6 +454,12 @@
         "scope": "national"
       },
       {
+        "date": "2028-11-07",
+        "name": "National Revolution and Solidarity Day",
+        "id": "solidarity",
+        "scope": "national"
+      },
+      {
         "date": "2028-12-16",
         "name": "Victory Day",
         "id": "victory",
@@ -707,12 +469,6 @@
         "date": "2028-12-25",
         "name": "Christmas Day",
         "id": "christmas",
-        "scope": "national"
-      },
-      {
-        "date": "2028-11-07",
-        "name": "National Revolution and Solidarity Day",
-        "id": "solidarity",
         "scope": "national"
       }
     ],
@@ -753,25 +509,12 @@
       {
         "date": "2028-02-25",
         "ids": [
-          "jumuat",
-          "fitr"
+          "jumuat"
         ],
         "scope": "national",
         "status": "projected",
         "publishedNames": [
-          "Jumatul Bidah (Provisional)",
-          "Eid ul-Fitr Holiday (Provisional)"
-        ]
-      },
-      {
-        "date": "2028-02-26",
-        "ids": [
-          "fitr"
-        ],
-        "scope": "national",
-        "status": "projected",
-        "publishedNames": [
-          "Eid ul-Fitr Holiday (Provisional)"
+          "Jumatul Bidah (Provisional)"
         ]
       },
       {
@@ -783,39 +526,6 @@
         "status": "projected",
         "publishedNames": [
           "Eid ul-Fitr (Provisional)"
-        ]
-      },
-      {
-        "date": "2028-02-28",
-        "ids": [
-          "fitr"
-        ],
-        "scope": "national",
-        "status": "projected",
-        "publishedNames": [
-          "Eid ul-Fitr Holiday (Provisional)"
-        ]
-      },
-      {
-        "date": "2028-02-29",
-        "ids": [
-          "fitr"
-        ],
-        "scope": "national",
-        "status": "projected",
-        "publishedNames": [
-          "Eid ul-Fitr Holiday (Provisional)"
-        ]
-      },
-      {
-        "date": "2028-03-01",
-        "ids": [
-          "fitr"
-        ],
-        "scope": "national",
-        "status": "projected",
-        "publishedNames": [
-          "Eid ul-Fitr Holiday (Provisional)"
         ]
       },
       {
@@ -852,28 +562,6 @@
         ]
       },
       {
-        "date": "2028-05-02",
-        "ids": [
-          "adha"
-        ],
-        "scope": "national",
-        "status": "projected",
-        "publishedNames": [
-          "Eid al-Adha Holiday (Provisional)"
-        ]
-      },
-      {
-        "date": "2028-05-03",
-        "ids": [
-          "adha"
-        ],
-        "scope": "national",
-        "status": "projected",
-        "publishedNames": [
-          "Eid al-Adha Holiday (Provisional)"
-        ]
-      },
-      {
         "date": "2028-05-04",
         "ids": [
           "adha"
@@ -885,49 +573,14 @@
         ]
       },
       {
-        "date": "2028-05-05",
-        "ids": [
-          "adha"
-        ],
-        "scope": "national",
-        "status": "projected",
-        "publishedNames": [
-          "Eid al-Adha Holiday (Provisional)"
-        ]
-      },
-      {
-        "date": "2028-05-06",
-        "ids": [
-          "adha"
-        ],
-        "scope": "national",
-        "status": "projected",
-        "publishedNames": [
-          "Eid al-Adha Holiday (Provisional)"
-        ]
-      },
-      {
-        "date": "2028-05-07",
-        "ids": [
-          "adha"
-        ],
-        "scope": "national",
-        "status": "projected",
-        "publishedNames": [
-          "Eid al-Adha Holiday (Provisional)"
-        ]
-      },
-      {
         "date": "2028-05-08",
         "ids": [
-          "buddha",
-          "adha"
+          "buddha"
         ],
         "scope": "national",
         "status": "projected",
         "publishedNames": [
-          "Buddha Purnima/Vesak",
-          "Eid al-Adha Holiday (Provisional)"
+          "Buddha Purnima/Vesak"
         ]
       },
       {
@@ -1043,9 +696,9 @@
         "url": "https://calendarific.com/holidays/2029/BD"
       }
     ],
-    "sourceSha256": "b2cf1fe680c43cfc66093bf7dc8f997b5c6ff438ec3abf1e1e33d76785aa5fbd",
+    "sourceSha256": "3a1ef354a7bacc3a86377c6df31294507465640c1caf9ef8774837bf0863e697",
     "sourceRowCount": 72,
-    "selection": "Explicit government-holiday category allowlist; optional, bank-only and observance rows excluded. Dates and extra closure days are publisher forecasts, not government confirmation.",
+    "selection": "Core nationwide holiday categories only. Eid Holiday extension rows are excluded; consecutive same-name Eid runs contribute only their first published date. Optional, bank-only and observance rows are excluded. These remain publisher forecasts, not government-confirmed mandatory leave.",
     "publishedRows": [
       {
         "date": "2029-01-01",
@@ -1066,38 +719,8 @@
         "scope": "national"
       },
       {
-        "date": "2029-02-13",
-        "name": "Eid ul-Fitr Holiday",
-        "id": "fitr",
-        "scope": "national"
-      },
-      {
-        "date": "2029-02-14",
-        "name": "Eid ul-Fitr Holiday",
-        "id": "fitr",
-        "scope": "national"
-      },
-      {
         "date": "2029-02-15",
         "name": "Eid ul-Fitr",
-        "id": "fitr",
-        "scope": "national"
-      },
-      {
-        "date": "2029-02-16",
-        "name": "Eid ul-Fitr Holiday",
-        "id": "fitr",
-        "scope": "national"
-      },
-      {
-        "date": "2029-02-17",
-        "name": "Eid ul-Fitr Holiday",
-        "id": "fitr",
-        "scope": "national"
-      },
-      {
-        "date": "2029-02-18",
-        "name": "Eid ul-Fitr Holiday",
         "id": "fitr",
         "scope": "national"
       },
@@ -1120,44 +743,8 @@
         "scope": "national"
       },
       {
-        "date": "2029-04-21",
-        "name": "Eid al-Adha Holiday",
-        "id": "adha",
-        "scope": "national"
-      },
-      {
-        "date": "2029-04-22",
-        "name": "Eid al-Adha Holiday",
-        "id": "adha",
-        "scope": "national"
-      },
-      {
         "date": "2029-04-23",
         "name": "Eid al-Adha",
-        "id": "adha",
-        "scope": "national"
-      },
-      {
-        "date": "2029-04-24",
-        "name": "Eid al-Adha Holiday",
-        "id": "adha",
-        "scope": "national"
-      },
-      {
-        "date": "2029-04-25",
-        "name": "Eid al-Adha Holiday",
-        "id": "adha",
-        "scope": "national"
-      },
-      {
-        "date": "2029-04-26",
-        "name": "Eid al-Adha Holiday",
-        "id": "adha",
-        "scope": "national"
-      },
-      {
-        "date": "2029-04-27",
-        "name": "Eid al-Adha Holiday",
         "id": "adha",
         "scope": "national"
       },
@@ -1263,28 +850,6 @@
         ]
       },
       {
-        "date": "2029-02-13",
-        "ids": [
-          "fitr"
-        ],
-        "scope": "national",
-        "status": "projected",
-        "publishedNames": [
-          "Eid ul-Fitr Holiday"
-        ]
-      },
-      {
-        "date": "2029-02-14",
-        "ids": [
-          "fitr"
-        ],
-        "scope": "national",
-        "status": "projected",
-        "publishedNames": [
-          "Eid ul-Fitr Holiday"
-        ]
-      },
-      {
         "date": "2029-02-15",
         "ids": [
           "fitr"
@@ -1293,39 +858,6 @@
         "status": "projected",
         "publishedNames": [
           "Eid ul-Fitr"
-        ]
-      },
-      {
-        "date": "2029-02-16",
-        "ids": [
-          "fitr"
-        ],
-        "scope": "national",
-        "status": "projected",
-        "publishedNames": [
-          "Eid ul-Fitr Holiday"
-        ]
-      },
-      {
-        "date": "2029-02-17",
-        "ids": [
-          "fitr"
-        ],
-        "scope": "national",
-        "status": "projected",
-        "publishedNames": [
-          "Eid ul-Fitr Holiday"
-        ]
-      },
-      {
-        "date": "2029-02-18",
-        "ids": [
-          "fitr"
-        ],
-        "scope": "national",
-        "status": "projected",
-        "publishedNames": [
-          "Eid ul-Fitr Holiday"
         ]
       },
       {
@@ -1362,28 +894,6 @@
         ]
       },
       {
-        "date": "2029-04-21",
-        "ids": [
-          "adha"
-        ],
-        "scope": "national",
-        "status": "projected",
-        "publishedNames": [
-          "Eid al-Adha Holiday"
-        ]
-      },
-      {
-        "date": "2029-04-22",
-        "ids": [
-          "adha"
-        ],
-        "scope": "national",
-        "status": "projected",
-        "publishedNames": [
-          "Eid al-Adha Holiday"
-        ]
-      },
-      {
         "date": "2029-04-23",
         "ids": [
           "adha"
@@ -1392,50 +902,6 @@
         "status": "projected",
         "publishedNames": [
           "Eid al-Adha"
-        ]
-      },
-      {
-        "date": "2029-04-24",
-        "ids": [
-          "adha"
-        ],
-        "scope": "national",
-        "status": "projected",
-        "publishedNames": [
-          "Eid al-Adha Holiday"
-        ]
-      },
-      {
-        "date": "2029-04-25",
-        "ids": [
-          "adha"
-        ],
-        "scope": "national",
-        "status": "projected",
-        "publishedNames": [
-          "Eid al-Adha Holiday"
-        ]
-      },
-      {
-        "date": "2029-04-26",
-        "ids": [
-          "adha"
-        ],
-        "scope": "national",
-        "status": "projected",
-        "publishedNames": [
-          "Eid al-Adha Holiday"
-        ]
-      },
-      {
-        "date": "2029-04-27",
-        "ids": [
-          "adha"
-        ],
-        "scope": "national",
-        "status": "projected",
-        "publishedNames": [
-          "Eid al-Adha Holiday"
         ]
       },
       {
@@ -1573,9 +1039,9 @@
         "url": "https://calendarific.com/holidays/2030/BD"
       }
     ],
-    "sourceSha256": "946f7ecc0ff3e35c77fd3e77326923b2f8734eb73a711131c1114a04b9be06d0",
+    "sourceSha256": "7131343269065694ce766a485095d943a1daa5ff6224abc2440d965cc45a1f2d",
     "sourceRowCount": 72,
-    "selection": "Explicit government-holiday category allowlist; optional, bank-only and observance rows excluded. Dates and extra closure days are publisher forecasts, not government confirmation.",
+    "selection": "Core nationwide holiday categories only. Eid Holiday extension rows are excluded; consecutive same-name Eid runs contribute only their first published date. Optional, bank-only and observance rows are excluded. These remain publisher forecasts, not government-confirmed mandatory leave.",
     "publishedRows": [
       {
         "date": "2030-02-01",
@@ -1591,18 +1057,6 @@
       },
       {
         "date": "2030-02-05",
-        "name": "Eid al-Fitr (Provisional)",
-        "id": "fitr",
-        "scope": "national"
-      },
-      {
-        "date": "2030-02-06",
-        "name": "Eid al-Fitr (Provisional)",
-        "id": "fitr",
-        "scope": "national"
-      },
-      {
-        "date": "2030-02-07",
         "name": "Eid al-Fitr (Provisional)",
         "id": "fitr",
         "scope": "national"
@@ -1627,18 +1081,6 @@
       },
       {
         "date": "2030-04-14",
-        "name": "Eid al-Adha (Provisional)",
-        "id": "adha",
-        "scope": "national"
-      },
-      {
-        "date": "2030-04-15",
-        "name": "Eid al-Adha (Provisional)",
-        "id": "adha",
-        "scope": "national"
-      },
-      {
-        "date": "2030-04-16",
         "name": "Eid al-Adha (Provisional)",
         "id": "adha",
         "scope": "national"
@@ -1708,48 +1150,6 @@
         "name": "Christmas Day (Provisional)",
         "id": "christmas",
         "scope": "national"
-      },
-      {
-        "date": "2030-02-03",
-        "name": "Eid ul-Fitr Holiday (Provisional)",
-        "id": "fitr",
-        "scope": "national"
-      },
-      {
-        "date": "2030-02-04",
-        "name": "Eid ul-Fitr Holiday (Provisional)",
-        "id": "fitr",
-        "scope": "national"
-      },
-      {
-        "date": "2030-02-08",
-        "name": "Eid ul-Fitr Holiday (Provisional)",
-        "id": "fitr",
-        "scope": "national"
-      },
-      {
-        "date": "2030-04-12",
-        "name": "Eid al-Adha Holiday (Provisional)",
-        "id": "adha",
-        "scope": "national"
-      },
-      {
-        "date": "2030-04-13",
-        "name": "Eid al-Adha Holiday (Provisional)",
-        "id": "adha",
-        "scope": "national"
-      },
-      {
-        "date": "2030-04-17",
-        "name": "Eid al-Adha Holiday (Provisional)",
-        "id": "adha",
-        "scope": "national"
-      },
-      {
-        "date": "2030-04-18",
-        "name": "Eid al-Adha Holiday (Provisional)",
-        "id": "adha",
-        "scope": "national"
       }
     ],
     "holidays": [
@@ -1767,28 +1167,6 @@
         ]
       },
       {
-        "date": "2030-02-03",
-        "ids": [
-          "fitr"
-        ],
-        "scope": "national",
-        "status": "projected",
-        "publishedNames": [
-          "Eid ul-Fitr Holiday (Provisional)"
-        ]
-      },
-      {
-        "date": "2030-02-04",
-        "ids": [
-          "fitr"
-        ],
-        "scope": "national",
-        "status": "projected",
-        "publishedNames": [
-          "Eid ul-Fitr Holiday (Provisional)"
-        ]
-      },
-      {
         "date": "2030-02-05",
         "ids": [
           "fitr"
@@ -1797,39 +1175,6 @@
         "status": "projected",
         "publishedNames": [
           "Eid al-Fitr (Provisional)"
-        ]
-      },
-      {
-        "date": "2030-02-06",
-        "ids": [
-          "fitr"
-        ],
-        "scope": "national",
-        "status": "projected",
-        "publishedNames": [
-          "Eid al-Fitr (Provisional)"
-        ]
-      },
-      {
-        "date": "2030-02-07",
-        "ids": [
-          "fitr"
-        ],
-        "scope": "national",
-        "status": "projected",
-        "publishedNames": [
-          "Eid al-Fitr (Provisional)"
-        ]
-      },
-      {
-        "date": "2030-02-08",
-        "ids": [
-          "fitr"
-        ],
-        "scope": "national",
-        "status": "projected",
-        "publishedNames": [
-          "Eid ul-Fitr Holiday (Provisional)"
         ]
       },
       {
@@ -1855,28 +1200,6 @@
         ]
       },
       {
-        "date": "2030-04-12",
-        "ids": [
-          "adha"
-        ],
-        "scope": "national",
-        "status": "projected",
-        "publishedNames": [
-          "Eid al-Adha Holiday (Provisional)"
-        ]
-      },
-      {
-        "date": "2030-04-13",
-        "ids": [
-          "adha"
-        ],
-        "scope": "national",
-        "status": "projected",
-        "publishedNames": [
-          "Eid al-Adha Holiday (Provisional)"
-        ]
-      },
-      {
         "date": "2030-04-14",
         "ids": [
           "newYear",
@@ -1887,50 +1210,6 @@
         "publishedNames": [
           "Bengali New Year's Day (Provisional)",
           "Eid al-Adha (Provisional)"
-        ]
-      },
-      {
-        "date": "2030-04-15",
-        "ids": [
-          "adha"
-        ],
-        "scope": "national",
-        "status": "projected",
-        "publishedNames": [
-          "Eid al-Adha (Provisional)"
-        ]
-      },
-      {
-        "date": "2030-04-16",
-        "ids": [
-          "adha"
-        ],
-        "scope": "national",
-        "status": "projected",
-        "publishedNames": [
-          "Eid al-Adha (Provisional)"
-        ]
-      },
-      {
-        "date": "2030-04-17",
-        "ids": [
-          "adha"
-        ],
-        "scope": "national",
-        "status": "projected",
-        "publishedNames": [
-          "Eid al-Adha Holiday (Provisional)"
-        ]
-      },
-      {
-        "date": "2030-04-18",
-        "ids": [
-          "adha"
-        ],
-        "scope": "national",
-        "status": "projected",
-        "publishedNames": [
-          "Eid al-Adha Holiday (Provisional)"
         ]
       },
       {

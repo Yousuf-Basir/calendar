@@ -66,7 +66,7 @@ test('published forecast years provide unique ISO dates and bilingual festival c
   assert.deepEqual(data.HOLIDAY_YEARS, [2026, 2027, 2028, 2029, 2030])
   for (let year = 2027; year <= 2030; year++) {
     const entries = data.BANGLADESH_HOLIDAYS.filter(entry => entry.date.startsWith(`${year}-`))
-    assert.ok(entries.length >= 17, String(year))
+    assert.ok(entries.length >= 16, String(year))
     assert.equal(new Set(entries.map(entry => entry.date)).size, entries.length)
     for (const entry of entries) {
       assert.equal(new Date(`${entry.date}T00:00:00Z`).toISOString().slice(0, 10), entry.date)
@@ -75,11 +75,12 @@ test('published forecast years provide unique ISO dates and bilingual festival c
       assert.ok(entry.names.every(name => name.en.trim() && /[\u0980-\u09ff]/u.test(name.bn)))
     }
     const names = entries.flatMap(entry => entry.names.map(name => name.en))
-    for (const core of ['Buddha Purnima', 'Janmashtami', 'Durga Puja · Navami', 'Durga Puja · Dashami', 'Eid-ul-Fitr holiday', 'Eid-ul-Adha holiday']) {
+    for (const core of ['Buddha Purnima', 'Janmashtami', 'Durga Puja · Navami', 'Durga Puja · Dashami', 'Eid-ul-Fitr', 'Eid-ul-Adha']) {
       assert.ok(names.includes(core), `${year}: ${core}`)
     }
     assert.ok(!names.some(name => /Election|additional|Durga Puja holiday/i.test(name)))
-    assert.ok(entries.filter(entry => entry.names.some(name => name.en === 'Eid-ul-Fitr holiday')).length >= 3)
+    assert.equal(entries.filter(entry => entry.names.some(name => name.en === 'Eid-ul-Fitr')).length, 1)
+    assert.equal(entries.filter(entry => entry.names.some(name => name.en === 'Eid-ul-Adha')).length, 1)
   }
   assert.equal(data.holidayForDate('2037-02-21'), undefined)
 })

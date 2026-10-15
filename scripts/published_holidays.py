@@ -24,10 +24,10 @@ NAME_IDS = {
     "Martyrs' Day and International Mother Language Day": 'language',
     'Jumatul Bidah': 'jumuat', "Jumu'atul-Wida": 'jumuat',
     'Shab-e-qadr': 'qadr', 'Laylat al-Qadr': 'qadr',
-    'Eid ul-Fitr': 'fitr', 'Eid ul-Fitr Holiday': 'fitr', 'Eid al-Fitr': 'fitr',
+    'Eid ul-Fitr': 'fitr', 'Eid al-Fitr': 'fitr',
     'Independence Day': 'independence',
     'Bengali New Year': 'newYear', "Bengali New Year's Day": 'newYear',
-    'May Day': 'may', 'Eid al-Adha': 'adha', 'Eid al-Adha Holiday': 'adha',
+    'May Day': 'may', 'Eid al-Adha': 'adha',
     'Buddha Purnima/Vesak': 'buddha', 'Buddha Purnima / Vesak': 'buddha',
     'Ashura': 'ashura', 'Student-People Uprising Day': 'uprising',
     'July Mass Uprising Day': 'uprising', 'Eid e-Milad-un Nabi': 'milad',
@@ -108,18 +108,30 @@ def parse_forecast(html, year):
         if not identity:
             continue  # Optional leave, bank-only closures and observances excluded.
         ids_seen.add(identity)
-        scope = 'regional' if identity == 'chaitra' else 'national'
-        entry = by_date.setdefault(date.isoformat(), {
-            'date': date.isoformat(), 'ids': [], 'scope': scope,
+        facts.append({'date': date.isoformat(), 'name': name, 'id': identity, 'scope': 'national'})
+    # Some source years repeat the same Eid name on consecutive days instead of
+    # labelling extensions "Holiday". Keep the first published date of each
+    # consecutive run, not an inferred date or an arbitrary one-per-year cap.
+    selected, previous_eid_date = [], {}
+    for fact in sorted(facts, key=lambda row: row['date']):
+        if fact['id'] in ('fitr', 'adha'):
+            date = dt.date.fromisoformat(fact['date'])
+            previous = previous_eid_date.get(fact['id'])
+            previous_eid_date[fact['id']] = date
+            if previous is not None and (date - previous).days <= 1:
+                continue
+        selected.append(fact)
+    facts = selected
+    for fact in facts:
+        date, identity, scope, name = fact['date'], fact['id'], fact['scope'], fact['name']
+        entry = by_date.setdefault(date, {
+            'date': date, 'ids': [], 'scope': scope,
             'status': 'projected', 'publishedNames': [],
         })
-        if entry['scope'] != scope:
-            raise ValueError('Regional/national collision requires manual review')
         if identity not in entry['ids']:
             entry['ids'].append(identity)
         entry['publishedNames'].append(name)
-        facts.append({'date': date.isoformat(), 'name': name, 'id': identity, 'scope': scope})
-    if len(seen) < 20 or len(by_date) < 17 or not REQUIRED <= ids_seen:
+    if len(seen) < len(REQUIRED) or len(by_date) < 14 or not REQUIRED <= ids_seen:
         raise ValueError('Empty/incomplete published forecast; existing data unchanged')
     for identity, suffix in [('language', '02-21'), ('independence', '03-26'),
                              ('newYear', '04-14'), ('may', '05-01'),
@@ -144,7 +156,7 @@ def fetch_forecast(year):
         'retrievedOn': dt.datetime.now(dt.timezone.utc).date().isoformat(),
         'sources': [{'label': f'Calendarific Bangladesh {year} — published provisional dates', 'url': url}],
         'sourceSha256': hashlib.sha256(raw).hexdigest(), 'sourceRowCount': count,
-        'selection': 'Explicit government-holiday category allowlist; optional, bank-only and observance rows excluded. Dates and extra closure days are publisher forecasts, not government confirmation.',
+        'selection': 'Core nationwide holiday categories only. Eid Holiday extension rows are excluded; consecutive same-name Eid runs contribute only their first published date. Optional, bank-only and observance rows are excluded. These remain publisher forecasts, not government-confirmed mandatory leave.',
         'publishedRows': facts, 'holidays': holidays, 'workingDays': [],
     }
 

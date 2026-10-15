@@ -10,7 +10,7 @@ Custom calculated dates were removed. Published Calendarific forecasts are loade
 npm run holidays:published -- --year 2027 --year 2028 --year 2029 --year 2030 --replace-all
 ```
 
-The command filters the publisher's mixed holiday/observance table through an explicit nationwide-holiday category allowlist, retains exact source dates and provenance, and keeps every imported record unconfirmed. It does **not** promote a year to official or replace government records. Optional leave and bank-only closures are excluded. All requested downloads must succeed before replacing data. Government announcements take priority even when an established provider disagrees. See `CALENDAR.md` for source coverage, caveats and published-date checks.
+The command filters the publisher's mixed holiday/observance table through an explicit nationwide-holiday category allowlist, excludes Eid extension rows, and keeps only the first date in any consecutive same-name Eid run. It retains selected source dates and provenance and keeps every imported record unconfirmed. It does **not** promote a year to official or replace government records. Optional leave and bank-only closures are excluded. All requested downloads must succeed before replacing data. Government announcements take priority even when an established provider disagrees. See `CALENDAR.md` for source coverage, caveats and published-date checks.
 
 ## Requirements
 

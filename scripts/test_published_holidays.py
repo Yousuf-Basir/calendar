@@ -28,7 +28,7 @@ class PublishedImporterTests(unittest.TestCase):
             actual, facts, count = parse_forecast(fixture(year), year)
             self.assertEqual(actual, DATA[str(year)]['holidays'])
             self.assertEqual(facts, DATA[str(year)]['publishedRows'])
-            self.assertGreaterEqual(count, 20)
+            self.assertGreaterEqual(count, 17)
 
     def test_optional_observance_and_bank_events_do_not_become_public_holidays(self):
         extras = [('Halloween', '2027-10-31'), ("Valentine's Day", '2027-02-14'),
@@ -50,6 +50,27 @@ class PublishedImporterTests(unittest.TestCase):
         for candidate in bad:
             with self.assertRaises(ValueError):
                 parse_forecast(candidate, 2027)
+
+    def test_eid_extensions_and_consecutive_same_name_days_are_excluded(self):
+        actual, facts, _ = parse_forecast(fixture(2027, [
+            ('Eid ul-Fitr Holiday (Provisional)', '2027-03-08'),
+            ('Eid ul-Fitr Holiday (Provisional)', '2027-03-11'),
+            ('Eid al-Adha Holiday (Provisional)', '2027-05-14'),
+            ('Eid al-Adha Holiday (Provisional)', '2027-05-20'),
+        ]), 2027)
+        self.assertEqual([r['date'] for r in facts if r['id'] == 'fitr'], ['2027-03-10'])
+        self.assertEqual([r['date'] for r in facts if r['id'] == 'adha'], ['2027-05-16'])
+        actual, facts, _ = parse_forecast(fixture(2030, [
+            ('Eid al-Fitr (Provisional)', '2030-02-06'),
+            ('Eid al-Fitr (Provisional)', '2030-02-07'),
+            ('Eid al-Adha (Provisional)', '2030-04-15'),
+            ('Eid al-Adha (Provisional)', '2030-04-16'),
+        ]), 2030)
+        self.assertEqual([r['date'] for r in facts if r['id'] == 'fitr'], ['2030-02-05'])
+        self.assertEqual([r['date'] for r in facts if r['id'] == 'adha'], ['2030-04-14'])
+        # A separate Eid occurrence must not be discarded by an annual limit.
+        _, facts, _ = parse_forecast(fixture(2030, [('Eid al-Fitr (Provisional)', '2030-12-30')]), 2030)
+        self.assertEqual([r['date'] for r in facts if r['id'] == 'fitr'], ['2030-02-05', '2030-12-30'])
 
     def test_multiyear_fetch_failure_preserves_destination_bytes(self):
         with tempfile.TemporaryDirectory(dir=ROOT / 'scripts') as folder:

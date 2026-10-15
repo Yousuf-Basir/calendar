@@ -23,10 +23,15 @@ test('future dates come from attributed published forecasts, never local calcula
   assert.equal(holidayForDate('2036-12-25'), undefined)
 })
 
-test('published source festival dates and closure spans replace calculated core-only guesses', () => {
+test('published forecasts list only Eid festival days, not surrounding closure spans', () => {
   const dates = (year, name) => BANGLADESH_HOLIDAYS.filter(h => h.date.startsWith(`${year}-`) && h.names.some(n => n.en === name)).map(h => h.date)
-  assert.deepEqual(dates(2027, 'Eid-ul-Fitr holiday'), ['2027-03-08', '2027-03-09', '2027-03-10', '2027-03-11', '2027-03-12', '2027-03-13'])
-  assert.deepEqual(dates(2027, 'Eid-ul-Adha holiday'), ['2027-05-14', '2027-05-15', '2027-05-16', '2027-05-17', '2027-05-18', '2027-05-19', '2027-05-20'])
+  for (const [year, fitr, adha] of [[2027, '03-10', '05-16'], [2028, '02-27', '05-04'], [2029, '02-15', '04-23'], [2030, '02-05', '04-14']]) {
+    assert.deepEqual(dates(year, 'Eid-ul-Fitr'), [`${year}-${fitr}`])
+    assert.deepEqual(dates(year, 'Eid-ul-Adha'), [`${year}-${adha}`])
+    assert.deepEqual(dates(year, 'Eid-ul-Fitr holiday'), [])
+    assert.deepEqual(dates(year, 'Eid-ul-Adha holiday'), [])
+    assert.ok(!HOLIDAY_METADATA[year].publishedRows.some(row => /Eid.*Holiday/i.test(row.name)))
+  }
   assert.deepEqual(dates(2027, 'Buddha Purnima'), ['2027-05-20'])
   assert.deepEqual(dates(2027, 'Janmashtami'), ['2027-08-25'])
   assert.deepEqual(dates(2027, 'Durga Puja · Navami'), ['2027-10-09'])
