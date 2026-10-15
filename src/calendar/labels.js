@@ -11,7 +11,7 @@ export const LABELS = {
     source: 'Holiday sources', working: 'Government working day',
     projected: 'Projected · unconfirmed', noneProjected: 'No projected holidays listed this month.',
     projectedFor: 'Projected holidays for',
-    projectedWarning: 'not confirmed by the government. Lunar dates may shift by 1–2 days; festival observance and holiday policy may change. Only Eid core days are estimated; extra closure days are not included.',
+    projectedWarning: 'not confirmed by the government',
   },
   bn: {
     months: ['বৈশাখ', 'জ্যৈষ্ঠ', 'আষাঢ়', 'শ্রাবণ', 'ভাদ্র', 'আশ্বিন', 'কার্তিক', 'অগ্রহায়ণ', 'পৌষ', 'মাঘ', 'ফাল্গুন', 'চৈত্র'],
@@ -23,7 +23,7 @@ export const LABELS = {
     source: 'ছুটির উৎস', working: 'সরকারি কর্মদিবস',
     projected: 'সম্ভাব্য · অনিশ্চিত', noneProjected: 'এই মাসে সম্ভাব্য ছুটি তালিকাভুক্ত নেই।',
     projectedFor: 'সম্ভাব্য ছুটির বছর:',
-    projectedWarning: 'সরকারিভাবে নিশ্চিত নয়। চাঁদ দেখার কারণে তারিখ ১–২ দিন বদলাতে পারে; উৎসব পালনের দিন ও ছুটির নীতিও বদলাতে পারে। শুধু ঈদের মূল দিন অনুমান করা হয়েছে; অতিরিক্ত ছুটির দিন অন্তর্ভুক্ত নয়।',
+    projectedWarning: 'সরকারিভাবে নিশ্চিত নয়।',
   },
 }
 const formatters = {

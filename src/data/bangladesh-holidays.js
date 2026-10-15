@@ -96,7 +96,7 @@ export function buildHolidayData(overrides = confirmed) {
       workingDays: ['2026-10-17'],
     },
     ...Object.fromEntries(Object.entries(projections).map(([year, projection]) => [year, {
-      ...projection, verifiedOn: null, sources: [],
+      ...projection, verifiedOn: null,
       holidays: projection.holidays.map(({ ids, ...holiday }) => ({ ...holiday, names: ids.map(id => ({ ...names[id] })) })),
     }])),
   }

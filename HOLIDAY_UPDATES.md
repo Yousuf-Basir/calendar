@@ -2,6 +2,16 @@
 
 The app bundles holiday data; it does **not** scrape government PDFs in the browser. Future projections are **not official**. The maintainer pipeline below downloads evidence and creates a review draft. Only a separate, explicitly attested apply step can add an official year to `src/data/confirmed-holidays.json`. Historical 2026 data is not rewritten by downloading or reviewing a gazette.
 
+## Published forecast refresh (separate from government confirmation)
+
+Custom calculated dates were removed. Published Calendarific forecasts are loaded for 2027–2030 only; unsupported 2031–2036 dates are not shown. To refresh the published subset:
+
+```sh
+npm run holidays:published -- --year 2027 --year 2028 --year 2029 --year 2030 --replace-all
+```
+
+The command filters the publisher's mixed holiday/observance table through an explicit nationwide-holiday category allowlist, retains exact source dates and provenance, and keeps every imported record unconfirmed. It does **not** promote a year to official or replace government records. Optional leave and bank-only closures are excluded. All requested downloads must succeed before replacing data. Government announcements take priority even when an established provider disagrees. See `CALENDAR.md` for source coverage, caveats and published-date checks.
+
 ## Requirements
 
 - Node/npm for the existing app; Python 3.10+ available as `python3` (Windows: use Python/WSL or invoke the script with your Python executable).

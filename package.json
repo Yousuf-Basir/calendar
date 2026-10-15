@@ -34,7 +34,9 @@
     "url": "https://github.com/iamadhitya1/react-offline-first"
   },
   "scripts": {
-    "test": "node --test src/calendar/calendar.test.js src/pwa/install.test.js && npm run test:holidays-updater",
+    "test": "node --test src/calendar/calendar.test.js src/pwa/install.test.js && npm run test:holidays-updater && npm run test:published-holidays",
+    "test:published-holidays": "python3 -m unittest discover -s scripts -p 'test_published_holidays.py' -v",
+    "holidays:published": "python3 scripts/published_holidays.py",
     "test:holidays-updater": "python3 -m unittest discover -s scripts -p 'test_holiday_updater.py' -v",
     "holidays:update": "python3 scripts/holiday_updater.py update",
     "holidays:apply": "python3 scripts/holiday_updater.py apply",
@@ -48,7 +50,6 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.0.0",
-    "astronomy-engine": "2.1.19",
     "vite": "^5.0.0"
   }
 }

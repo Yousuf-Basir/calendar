@@ -157,7 +157,7 @@ test('manifest and all local install icons exist with correct PNG dimensions', a
 
 test('service worker precache URLs are unique and all local static files exist', async () => {
   const worker = await readFile('public/sw.js', 'utf8')
-  assert.match(worker, /const CACHE_NAME = 'calendar-shell-v9'/, 'holiday projections invalidate the older offline shell')
+  assert.match(worker, /const CACHE_NAME = 'calendar-shell-v10'/, 'holiday projections invalidate the older offline shell')
   const urls = runInNewContext(`${worker}\nSTATIC_ASSETS`, { self: { addEventListener() {} } })
   assert.equal(new Set(urls).size, urls.length, 'duplicate requests make cache.addAll fail')
   for (const url of urls) await access(url === '/' || url === '/index.html' ? 'index.html' : `public${url}`)

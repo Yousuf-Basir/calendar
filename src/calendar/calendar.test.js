@@ -9,7 +9,7 @@ import {
 } from './calendar.js'
 import { holidayForDate, HOLIDAY_YEARS, WORKING_DAYS } from '../data/bangladesh-holidays.js'
 import '../data/projections.test.js'
-import '../data/projection-builder.test.js'
+import '../data/published-sources.test.js'
 import '../data/updater-integration.test.js'
 import './holiday-ui.test.js'
 
@@ -21,7 +21,7 @@ test('projected coverage follows the displayed month including empty and mixed-y
   }
   assert.deepEqual(holidayPeriod(isoToDay('2026-10-08'), 'en').projectedYears, [])
   assert.deepEqual(holidayPeriod(isoToDay('2026-12-31'), 'bn').projectedYears, [2027])
-  assert.deepEqual(holidayPeriod(isoToDay('2036-12-31'), 'bn').projectedYears, [2036])
+  assert.deepEqual(holidayPeriod(isoToDay('2036-12-31'), 'bn').projectedYears, [])
   assert.deepEqual(holidayPeriod(isoToDay('2037-01-08'), 'en').projectedYears, [])
 })
 
@@ -128,7 +128,7 @@ test('holiday coverage checks Gregorian years across native month boundaries', (
     assert.ok(period.month.start < isoToDay('2027-01-01'))
     assert.ok(period.month.end > isoToDay('2027-01-01'))
     assert.deepEqual(period.missingYears, [])
-    assert.deepEqual(holidayPeriod(isoToDay('2036-12-31'), system).missingYears, [2037])
+    assert.deepEqual(holidayPeriod(isoToDay('2036-12-31'), system).missingYears, [2036, 2037])
     assert.deepEqual(holidayPeriod(isoToDay('2026-10-08'), system).missingYears, [])
   }
 })

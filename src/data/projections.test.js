@@ -19,7 +19,7 @@ test('year metadata differentiates official provenance from unverified projectio
   assert.equal(data.HOLIDAY_METADATA?.[2026]?.status, 'official')
   assert.equal(data.HOLIDAY_METADATA[2026].verifiedOn, '2026-10-08')
   assert.deepEqual(data.HOLIDAY_METADATA[2026].sources, original.sources)
-  for (let year = 2027; year <= 2036; year++) {
+  for (let year = 2027; year <= 2030; year++) {
     assert.equal(data.HOLIDAY_METADATA[year].status, 'projected')
     assert.equal(data.HOLIDAY_METADATA[year].verifiedOn, null)
   }
@@ -62,9 +62,9 @@ test('invalid, empty, partial and untrusted overrides are ignored atomically', (
   assert.doesNotThrow(() => data.buildHolidayData(null))
 })
 
-test('ten projected years provide unique ISO dates and bilingual festival coverage', () => {
-  assert.deepEqual(data.HOLIDAY_YEARS, Array.from({ length: 11 }, (_, i) => 2026 + i))
-  for (let year = 2027; year <= 2036; year++) {
+test('published forecast years provide unique ISO dates and bilingual festival coverage', () => {
+  assert.deepEqual(data.HOLIDAY_YEARS, [2026, 2027, 2028, 2029, 2030])
+  for (let year = 2027; year <= 2030; year++) {
     const entries = data.BANGLADESH_HOLIDAYS.filter(entry => entry.date.startsWith(`${year}-`))
     assert.ok(entries.length >= 17, String(year))
     assert.equal(new Set(entries.map(entry => entry.date)).size, entries.length)
@@ -78,8 +78,8 @@ test('ten projected years provide unique ISO dates and bilingual festival covera
     for (const core of ['Buddha Purnima', 'Janmashtami', 'Durga Puja · Navami', 'Durga Puja · Dashami', 'Eid-ul-Fitr holiday', 'Eid-ul-Adha holiday']) {
       assert.ok(names.includes(core), `${year}: ${core}`)
     }
-    assert.ok(!names.some(name => /Election|Solidarity|additional|Durga Puja holiday/i.test(name)))
-    assert.equal(entries.filter(entry => entry.names.some(name => name.en === 'Eid-ul-Fitr holiday')).length, year === 2033 ? 2 : 1)
+    assert.ok(!names.some(name => /Election|additional|Durga Puja holiday/i.test(name)))
+    assert.ok(entries.filter(entry => entry.names.some(name => name.en === 'Eid-ul-Fitr holiday')).length >= 3)
   }
   assert.equal(data.holidayForDate('2037-02-21'), undefined)
 })
